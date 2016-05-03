@@ -1,0 +1,59 @@
+.text {
+	text-align: center;
+}
+
+.account {
+	font-size: 11px;
+}
+
+.center {
+	text-align: center;
+}
+
+.tab-pane {
+	background-color: #FFFFFF;
+	margin: 0;
+}
+
+.brd {
+	border: 4px double silver;
+	background: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.hr {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.frame {
+	border: 2px solid silver;
+	border-radius: 3px;
+}
+
+.input-practic {
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.input-practic-bottom {
+	padding: 20px;
+}
+
+.frame-certificates {
+	border: 2px solid silver;
+	height: 120px;
+	width: 100%;
+	text-align: center;
+}
+
+.add {
+	text-align: center;
+	padding-bottom: 20px;
+	
+}
+#body{
+	background-color: silver;
+}
