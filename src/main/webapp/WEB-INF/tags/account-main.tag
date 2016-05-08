@@ -5,7 +5,7 @@
 		<img src="media/avatar/3b186fb5-d88c-445d-b984-f8c483213ec6.jpg" class="img-responsive" style="width: 100%" />
 		<div class="text">
 			<h1 class="text-canter" >
-			<a style="color: black;" href="/edit">Ryan Baldwin</a>
+			<a style="color: black;" href="/edit">${fullName}</a>
 			</h1>
 			<p class="account">
 				<strong>Kiev, Ukraine</strong>
