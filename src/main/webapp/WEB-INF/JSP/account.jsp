@@ -1,9 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"%>
 <%@taglib prefix="resume" tagdir="/WEB-INF/tags"%>
 
-<div class="container">
-	<resume:account-nav-bar />
-</div>
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-4  col-sm-6">

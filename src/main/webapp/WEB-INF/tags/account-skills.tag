@@ -6,7 +6,7 @@
 							<i class="fa fa-code" aria-hidden="true"></i> Technical skills
 						</h3>
 						<p class="panel-title" style="text-align: right;">
-							<a href="#" class="navbar-link" style="font-size: 12px;">Edit</a>
+							<a href="/skills" class="navbar-link" style="font-size: 12px;">Edit</a>
 						</p>
 					</div>
 					<div class="panel-body">

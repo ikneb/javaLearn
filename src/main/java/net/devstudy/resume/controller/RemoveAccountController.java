@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RemoveAccountController {
 	
-	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-	public String getRemoveGet() {
+	@RequestMapping(value = "/remove", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getRemove() {
 		return "remove";
 	}
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String getRemovePost() {
-		return "remove";
-	}
-	
+
 }

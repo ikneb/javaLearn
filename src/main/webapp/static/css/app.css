@@ -57,3 +57,13 @@
 #body{
 	background-color: silver;
 }
+.error{
+	text-align: center;
+}
+.remove{
+	background-color: #FFFFFF;
+	width: 700px;
+}
+.head-remove{
+	background-color: #FF6347;
+}

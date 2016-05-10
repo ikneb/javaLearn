@@ -44,19 +44,14 @@ public class PublicDataController {
 		return "sign-in";
 	}
 	
-	@RequestMapping(value="/sign-up",method=RequestMethod.GET)
-	public String getSingUpGet(){
-		return "sign-up";
-	}
-	
-	@RequestMapping(value="/sign-up",method=RequestMethod.POST)
-	public String getSingUpPost(){
+	@RequestMapping(value="/sign-up",method={RequestMethod.GET,RequestMethod.POST})
+	public String getSingUp(){
 		return "sign-up";
 	}
 	
 	@RequestMapping(value="/sign-up/success",method=RequestMethod.GET)
 	public String getSingUpSuccess(){
-		return "sign-up/success";
+		return "sign-up-success";
 	}
 	
 	@RequestMapping(value="/sign-in-failed",method=RequestMethod.GET)
@@ -64,24 +59,19 @@ public class PublicDataController {
 		return "sign-in-failed";
 	}
 	
-	@RequestMapping(value="/restore",method=RequestMethod.GET)
-	public String getRestoreGet(){
+	@RequestMapping(value="/restore",method={RequestMethod.GET,RequestMethod.POST})
+	public String getRestore(){
 		return "restore";
 	}
 	
 	@RequestMapping(value="/restore/success",method=RequestMethod.GET)
 	public String getRestoreSuccess(){
-		return "restore/success";
-	}
-	
-	@RequestMapping(value="/restore",method=RequestMethod.POST)
-	public String getRestorePost(){
-		return "restore";
+		return "restore-success";
 	}
 	
 	@RequestMapping(value="/restore/{token}",method=RequestMethod.GET)
 	public String getToken(){
-		return "restore/{token}";
+		return "restore";
 	}
 
 }

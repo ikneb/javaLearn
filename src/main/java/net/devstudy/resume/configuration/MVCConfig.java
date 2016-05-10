@@ -13,26 +13,22 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"net.devstudy.resume.controller"})
-public class MVCConfig extends WebMvcConfigurerAdapter{
+@ComponentScan({ "net.devstudy.resume.controller" })
+public class MVCConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
-	public ViewResolver viewResolver(){
+	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/WEB-INF/JSP/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-	
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 		registry.addResourceHandler("/media/**").addResourceLocations("/media/");
-		registry.addResourceHandler("/favicon.ico/**").addResourceLocations("/favicon.ico/");
-		
+		registry.addResourceHandler("/favicon.ico").addResourceLocations("/favicon.ico");
 	}
-	
-
 }
