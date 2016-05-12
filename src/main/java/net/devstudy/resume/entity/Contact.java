@@ -1,76 +1,85 @@
 package net.devstudy.resume.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+
 @Embeddable
-public class Contact {
+@Access(AccessType.FIELD)
+public class Contact implements Serializable {
+	private static final long serialVersionUID = -3685720846934765841L;
 	
-	@Column(name = "skype")
+	@Column(length = 80)
 	private String skype;
-	
-	@Column(name = "vcontakte")
-	private String vcontakte;
-	
-	@Column(name = "facebook")
+
+	@Column(length = 255)
+	private String vkontakte;
+
+	@Column(length = 255)
 	private String facebook;
+
+	@Column(length = 255)
+	private String linkedin;
+
+	@Column(length = 255)
+	private String github;
 	
-	@Column(name = "lincedin")
-	private String lincedin;
-	
-	@Column(name = "githab")
-	private String githab;
-	
-	@Column(name = "stacoverflow")
-	private String stacoverflow;
-	
-	
-	public String getFacebook() {
-		return facebook;
+	@Column(length = 255)
+	private String stackoverflow;
+
+	public Contact() {
+		super();
 	}
-	
-	public String getGithab() {
-		return githab;
-	}
-	
-	public String getLincedin() {
-		return lincedin;
-	}
-	
+
 	public String getSkype() {
 		return skype;
 	}
-	
-	public String getStacoverflow() {
-		return stacoverflow;
-	}
-	
-	public String getVcontakte() {
-		return vcontakte;
-	}
-	
-	public void setGithab(String githab) {
-		this.githab = githab;
-	}
-	
-	public void setFacebook(String facebook) {
-		this.facebook = facebook;
-	}
-	
-	public void setLincedin(String lincedin) {
-		this.lincedin = lincedin;
-	}
-	
+
 	public void setSkype(String skype) {
 		this.skype = skype;
 	}
-	
-	public void setStacoverflow(String stacoverflow) {
-		this.stacoverflow = stacoverflow;
-	}
-	
-	public void setVcontakte(String vcontakte) {
-		this.vcontakte = vcontakte;
+
+	public String getVkontakte() {
+		return vkontakte;
 	}
 
+	public void setVkontakte(String vkontakte) {
+		this.vkontakte = vkontakte;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public String getGithub() {
+		return github;
+	}
+
+	public void setGithub(String github) {
+		this.github = github;
+	}
+
+	public String getStackoverflow() {
+		return stackoverflow;
+	}
+
+	public void setStackoverflow(String stackoverflow) {
+		this.stackoverflow = stackoverflow;
+	}
 }
