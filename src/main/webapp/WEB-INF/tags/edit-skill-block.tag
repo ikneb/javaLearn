@@ -7,7 +7,10 @@
 <%@ attribute name="skill" required="false" type="net.devstudy.resume.entity.Skill"%>
 
 <div id="ui-item-${index }" class="row ui-item skill-item">
+
 	<div class="col-xs-5 col-sm-4 col-md-2 form-group">
+	<br>
+	<br>
 		<input type="hidden" name="items[${index }].id" value="${skill.id }" /> 
 		<select name="items[${index }].category" class="form-control">
 			<c:forEach var="category" items="${skillCategories }">

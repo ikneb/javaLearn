@@ -9,7 +9,7 @@
 				<i class="fa fa-language" aria-hidden="true"></i> Foreign languages
 			</h3>
 			<h3 class="panel-title" style="text-align: right;">
-				<a href="#" class="navbar-link" style="font-size: 12px;">Edit</a>
+				<a href="edit/languages" class="navbar-link" style="font-size: 12px;">Edit</a>
 			</h3>
 		</div>
 		<div class="panel-body">

@@ -8,7 +8,7 @@
 				<i class="fa fa-briefcase" aria-hidden="true"></i> Practic Experience
 			</h3>
 			<p class="panel-title" style="text-align: right;">
-				<a href="#" class="navbar-link" style="font-size: 12px;">Edit</a>
+				<a href="edit/practics" class="navbar-link" style="font-size: 12px;">Edit</a>
 			</p>
 		</div>
 		<div class="panel-body">

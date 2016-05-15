@@ -8,7 +8,7 @@
 				<i class="fa fa-book" aria-hidden="true"></i> Cources
 			</h3>
 			<p class="panel-title" style="text-align: right;">
-				<a href="#" class="navbar-link" style="font-size: 12px;">Edit</a>
+				<a href="edit/courses" class="navbar-link" style="font-size: 12px;">Edit</a>
 			</p>
 		</div>
 		<div class="panel-body">

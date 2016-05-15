@@ -17,7 +17,7 @@
 			<resume:account-skills />
 			<resume:account-practic />
 			<resume:account-certificates />
-			<resume:account-cources />
+			<resume:account-cources/>
 			<resume:account-education />
 		</div>
 		<div class="col-xs-12 visible-xs-block">

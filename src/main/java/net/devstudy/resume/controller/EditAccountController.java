@@ -25,7 +25,7 @@ public class EditAccountController {
 
 	@RequestMapping(value = "/edit", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditAccount() {
-		return "edit";
+		return "edit/edit";
 	}
 
 	@RequestMapping(value = "/my-profile", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class EditAccountController {
 			return gotoSkillsJSP(model);
         }
 		//TODO Update skills 
-		return "redirect:/mike-ross";
+		return "redirect:/chloe-albertson";
 	}
 	
 	private String gotoSkillsJSP(Model model){
@@ -60,12 +60,14 @@ public class EditAccountController {
 	}
 
 	@RequestMapping(value = "/edit/practics", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditPractics() {
+	public String getEditPractics(Model model) {
+		model.addAttribute("practics", accountRepository.findOne(1L).getPractics());
 		return "edit/practics";
 	}
 
 	@RequestMapping(value = "/edit/certificates", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditCertificates() {
+	public String getEditCertificates(Model model) {
+		model.addAttribute("certificates", accountRepository.findOne(1L).getCertificates());
 		return "edit/certificates";
 	}
 
@@ -75,27 +77,32 @@ public class EditAccountController {
 	}
 
 	@RequestMapping(value = "/edit/courses", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditCourses() {
+	public String getEditCourses(Model model) {
+		model.addAttribute("courses", accountRepository.findOne(1L).getCourses());
 		return "edit/courses";
 	}
 
 	@RequestMapping(value = "/edit/education", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditEducation() {
+	public String getEditEducation(Model model) {
+		model.addAttribute("educations", accountRepository.findOne(1L).getEducations());
 		return "edit/education";
 	}
 
 	@RequestMapping(value = "/edit/languages", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditLanguages() {
+	public String getEditLanguages(Model model) {
+		model.addAttribute("languages", accountRepository.findOne(1L).getLanguages());
 		return "edit/languages";
 	}
 
 	@RequestMapping(value = "/edit/hobbies", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditHobbies() {
+	public String getEditHobbies(Model model) {
+		model.addAttribute("hobbies", accountRepository.findOne(1L).getHobbies());
 		return "edit/hobbies";
 	}
 
 	@RequestMapping(value = "/edit/info", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditInfo() {
+	public String getEditInfo(Model model) {
+		model.addAttribute("info", accountRepository.findOne(1L).getInfo());
 		return "edit/info";
 	}
 

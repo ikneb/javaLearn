@@ -25,7 +25,7 @@
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Ryan Baldwin<span class="caret"></span></a>
+							aria-expanded="false">Menu<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>
 										My profile</a></li>
