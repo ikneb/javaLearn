@@ -1,5 +1,7 @@
 <%@tag pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:if test="${account.objective != null && account.summary != null}">
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<h3 class="panel-title">
@@ -10,9 +12,11 @@
 		</p>
 	</div>
 	<div class="panel-body">
-		<h4>Junior java developer position</h4>
+		<h4>${account.objective}</h4>
 		<p>
-			<strong>Summary of Qualifications:</strong><br> Two java professional courses with developing two applications:blog and resume(link provided).
+			<strong>Summary of Qualifications:</strong><br>${account.summary}
 		</p>
 	</div>
 </div>
+
+</c:if>

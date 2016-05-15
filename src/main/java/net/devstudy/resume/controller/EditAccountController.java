@@ -4,9 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.devstudy.resume.form.SkillForm;
+import net.devstudy.resume.form.UploadExampleForm;
+import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.repository.storage.SkillCategoryRepository;
 
 @Controller
@@ -14,6 +19,9 @@ public class EditAccountController {
 	
 	@Autowired
 	private SkillCategoryRepository skillCategoryRepository;
+	@Autowired
+	private AccountRepository accountRepository;
+
 
 	@RequestMapping(value = "/edit", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditAccount() {
@@ -31,55 +39,69 @@ public class EditAccountController {
 		return "edit-contacts";
 	}
 
-	@RequestMapping(value = "/skills", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditSkills(Model model) {
+	@RequestMapping(value = "/edit/skills", method = RequestMethod.GET)
+	public String getEditTechSkills(Model model) {
+		model.addAttribute("skillForm", new SkillForm(accountRepository.findOne(1L).getSkills()));
+		return gotoSkillsJSP(model);
+	}
+	
+	@RequestMapping(value = "/edit/skills", method = RequestMethod.POST)
+	public String saveEditTechSkills(@ModelAttribute("skillForm") SkillForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return gotoSkillsJSP(model);
+        }
+		//TODO Update skills 
+		return "redirect:/mike-ross";
+	}
+	
+	private String gotoSkillsJSP(Model model){
 		model.addAttribute("skillCategories", skillCategoryRepository.findAll(new Sort("id")));
-		return "edit-skills";
+		return "edit/skills";
 	}
 
 	@RequestMapping(value = "/edit/practics", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditPractics() {
-		return "edit-practics";
+		return "edit/practics";
 	}
 
 	@RequestMapping(value = "/edit/certificates", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditCertificates() {
-		return "edit-certificates";
+		return "edit/certificates";
 	}
 
 	@RequestMapping(value = "/edit/certificates/upload", method = RequestMethod.POST)
-	public String getEditCertificatesUpload() {
-		return "edit-certificates-upload";
+	public String getEditCertificatesUpload(@ModelAttribute("uploadExampleForm") UploadExampleForm uploadExampleForm) {
+		return "edit/certificates-upload";
 	}
 
 	@RequestMapping(value = "/edit/courses", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditCourses() {
-		return "edit-courses";
+		return "edit/courses";
 	}
 
 	@RequestMapping(value = "/edit/education", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditEducation() {
-		return "edit-education";
+		return "edit/education";
 	}
 
 	@RequestMapping(value = "/edit/languages", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditLanguages() {
-		return "edit-languages";
+		return "edit/languages";
 	}
 
 	@RequestMapping(value = "/edit/hobbies", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditHobbies() {
-		return "edit-hobbies";
+		return "edit/hobbies";
 	}
 
 	@RequestMapping(value = "/edit/info", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditInfo() {
-		return "edit-info";
+		return "edit/info";
 	}
 
 	@RequestMapping(value = "/edit/password", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditPassword() {
-		return "edit-password";
+		return "edit/password";
 	}
 
 }

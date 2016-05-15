@@ -3,24 +3,32 @@ package net.devstudy.resume.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import net.devstudy.resume.service.NameService;
+import net.devstudy.resume.entity.Account;
+import net.devstudy.resume.repository.storage.AccountRepository;
 
 @Controller
 public class PublicDataController {
 	
 	@Autowired
-	private NameService nameService;
+	private AccountRepository accountRepository;
+	
 	
 	@RequestMapping(value="/{uid}",method=RequestMethod.GET)
 	public String getAccount(@PathVariable("uid")String uid, Model model){
-		String fullName = nameService.convertName(uid);
-		model.addAttribute("fullName", fullName);
+		Account account = accountRepository.findByUid(uid);
+		if(account == null){
+			return "account_not_found";
+		}
+		model.addAttribute("account", account);
 		return "account";
 	}
 	
@@ -30,7 +38,10 @@ public class PublicDataController {
 	}
 	
 	@RequestMapping(value="/welcome",method=RequestMethod.GET)
-	public String getWelcome(){
+	public String getWelcome(Model model){
+		Pageable pageable = new PageRequest(1,10);
+		Page<Account> accounts  = accountRepository.findAllByCompletedTrue(pageable);
+		model.addAttribute("accounts", accounts);
 		return "welcome";
 	}
 	

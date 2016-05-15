@@ -92,7 +92,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	@OrderBy("name ASC")
 	private List<Hobby> hobbies;
 
-	@OneToMany(mappedBy = "account", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToMany(mappedBy = "account",  cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Language> languages;
 
 	@OneToMany(mappedBy = "account", cascade={CascadeType.MERGE, CascadeType.PERSIST})

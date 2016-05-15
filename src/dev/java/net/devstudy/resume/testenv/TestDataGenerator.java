@@ -248,8 +248,8 @@ public class TestDataGenerator {
 				LanguageLevel langLevel = languageLevels.get(r.nextInt(languageLevels.size()));
 				ps.setLong(1, idProfile);
 				ps.setString(2, language);
-				ps.setString(3, langLevel.getBdValue());
-				ps.setString(4, langType.getBdValue());
+				ps.setString(3, langLevel.getDbValue());
+				ps.setString(4, langType.getDbValue());
 				ps.addBatch();
 				if (langType != LanguageType.ALL) {
 					ps.setLong(1, idProfile);
@@ -258,8 +258,8 @@ public class TestDataGenerator {
 					while (newLangLevel == langLevel) {
 						newLangLevel = languageLevels.get(r.nextInt(languageLevels.size()));
 					}
-					ps.setString(3, langLevel.getBdValue());
-					ps.setString(4, langType.getReverseType().getBdValue());
+					ps.setString(3, langLevel.getDbValue());
+					ps.setString(4, langType.getReverseType().getDbValue());
 					ps.addBatch();
 				}
 			}

@@ -1,5 +1,7 @@
 <%@tag pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:if test="${account.certificates.size() != 0}">
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<h3 class="panel-title">
@@ -11,7 +13,11 @@
 	</div>
 	<div class="panel-body">
 		<p class="center">
-			<img src="media/certificates/d0cb812b-f025-4507-9389-459a5b446382-sm.jpg">
+		<c:forEach var="certificat" items="${account.certificates}">
+			<img src="${certificat.smallUrl}">
+		    </c:forEach>
+			
 		</p>
 	</div>
 </div>
+</c:if>

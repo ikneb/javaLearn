@@ -46,6 +46,8 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 
 	@Column(name = "begin_date", nullable = false)
 	private Date beginDate;
+	
+	
 
 	@Transient
 	private Integer beginDateMonth;
@@ -60,6 +62,7 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 
 	public Practic() {
 	}
+	
 
 	public Long getId() {
 		return this.id;
@@ -124,7 +127,7 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 	public void setBeginDate(Date beginDate) {
 		this.beginDate = beginDate;
 	}
-
+	
 	@Transient
 	public Integer getBeginDateMonth() {
 		if (beginDate != null) {
