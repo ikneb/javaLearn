@@ -17,9 +17,12 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
+
+import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 
 
 @Entity
@@ -64,6 +67,8 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private String email;
 	
 	@Column
+	@EnglishLanguage
+	@Size(min=1)
 	private String info;
 
 	@Column(length = 2147483647)

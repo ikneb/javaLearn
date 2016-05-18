@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.devstudy.resume.form.AccountForm;
 import net.devstudy.resume.form.CoursesForm;
 import net.devstudy.resume.form.EducationsForm;
 import net.devstudy.resume.form.HobbiesForm;
@@ -119,7 +120,7 @@ public class EditAccountController {
 	}
 
 	/* Certificates */
-	@RequestMapping(value = "/edit/certificates", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/edit/certificates", method =  RequestMethod.GET)
 	public String getEditCertificates(Model model) {
 		model.addAttribute("certificates", accountRepository.findOne(1L).getCertificates());
 		return "edit/certificates";
@@ -147,7 +148,7 @@ public class EditAccountController {
 	}
 
 	/* Hobbies */
-	@RequestMapping(value = "/edit/hobbies", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/edit/hobbies", method =  RequestMethod.GET)
 	public String getEditHobbies(Model model) {
 		model.addAttribute("hobbyForm",new HobbiesForm(accountRepository.findOne(1L).getHobbies()));
 		return "edit/hobbies";
@@ -163,10 +164,19 @@ public class EditAccountController {
 	}
 
 	/* Info */
-	@RequestMapping(value = "/edit/info", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/edit/info", method =  RequestMethod.GET)
 	public String getEditInfo(Model model) {
-		model.addAttribute("info", accountRepository.findOne(1L).getInfo());
+		model.addAttribute("info",accountRepository.findOne(1L).getInfo());
 		return "edit/info";
+	}
+	@RequestMapping(value = "/edit/info", method = RequestMethod.POST)
+	public String saveEditInfo(@Valid @ModelAttribute("accountForm") AccountForm form, BindingResult bindingResult,
+			Model model) {
+		if (bindingResult.hasErrors()) {
+			return "edit/info";
+		}
+		// TODO Update courses
+		return "redirect:/chloe-albertson";
 	}
 	
 

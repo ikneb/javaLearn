@@ -8,7 +8,7 @@
 	<div class="tab-content brd">
 		<h3 class="center">Курсы повышения квалификации</h3>
 		<hr>
-		<form:form action="/edit/languages" method="post" commandName="languageForm">
+		<form:form action="/edit/courses" method="post" commandName="courseForm">
 			<c:forEach var="course" items="${courseForm.items}" varStatus="status">
 				<resume:edit-cource-block index="${status.index}" course="${course}" />
 			</c:forEach>
