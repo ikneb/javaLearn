@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 
 
 @Entity
@@ -27,12 +30,18 @@ public class Education extends AbstractEntity<Long> implements Serializable, Acc
 	private Long id;
 
 	@Column(nullable=false, length=255)
+	@EnglishLanguage
+	@Size(min=1)
 	private String faculty;
 
 	@Column(nullable=false, length=100)
+	@EnglishLanguage
+	@Size(min=1)
 	private String summary;
 
 	@Column(nullable=false, length=2147483647)
+	@EnglishLanguage
+	@Size(min=1)
 	private String university;
 	
 	@Column(name="begin_year", nullable=false)

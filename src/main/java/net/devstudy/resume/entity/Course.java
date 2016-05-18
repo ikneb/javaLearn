@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 
 
 @Entity
@@ -26,9 +29,13 @@ public class Course extends AbstractFinishDateEntity<Long> implements Serializab
 	private Long id;
 	
 	@Column(length=60)
+	@EnglishLanguage	
+	@Size(min=1)
 	private String name;
 	
 	@Column(length=60)
+	@EnglishLanguage	
+	@Size(min=1)
 	private String school;
 	
 	
