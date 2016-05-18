@@ -6,28 +6,28 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import net.devstudy.resume.entity.Skill;
+import net.devstudy.resume.entity.Language;
 
-
-public class SkillForm implements Serializable {
+public class LanguageForm implements Serializable{
 	private static final long serialVersionUID = 4135568197764740034L;
 	@Valid
-	private List<Skill> items = new ArrayList<>();
+	private List<Language> items = new ArrayList<>();
 	
-	public SkillForm() {
+	public LanguageForm() {
 		super();
 	}
 
-	public SkillForm(List<Skill> items) {
+	public LanguageForm(List<Language> items) {
 		super();
 		this.items = items;
 	}
 
-	public List<Skill> getItems() {
+	public List<Language> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Skill> items) {
+	public void setItems(List<Language> items) {
 		this.items = items;
 	}
+
 }

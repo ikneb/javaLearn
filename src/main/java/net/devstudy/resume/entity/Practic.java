@@ -14,8 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.joda.time.DateTime;
+
+import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 
 
 @Entity
@@ -30,6 +33,8 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 	private Long id;
 
 	@Column(nullable = false, length = 100)
+	@EnglishLanguage
+	@Size(min=1)
 	private String company;
 
 	@Column(length = 255)
@@ -39,14 +44,17 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 	private String src;
 
 	@Column(nullable = false, length = 100)
+	@EnglishLanguage
+	@Size(min=1)
 	private String position;
 
 	@Column(nullable = false, length = 2147483647)
+	@EnglishLanguage
+	@Size(min=1)
 	private String responsibilities;
 
 	@Column(name = "begin_date", nullable = false)
 	private Date beginDate;
-	
 	
 
 	@Transient

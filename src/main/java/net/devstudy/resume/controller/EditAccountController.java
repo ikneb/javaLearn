@@ -1,5 +1,7 @@
 package net.devstudy.resume.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.devstudy.resume.form.CoursesForm;
+import net.devstudy.resume.form.LanguageForm;
+import net.devstudy.resume.form.PracticForm;
 import net.devstudy.resume.form.SkillForm;
 import net.devstudy.resume.form.UploadExampleForm;
 import net.devstudy.resume.repository.storage.AccountRepository;
@@ -38,15 +43,16 @@ public class EditAccountController {
 		
 		return "edit-contacts";
 	}
-
+	
+/*Skills*/
 	@RequestMapping(value = "/edit/skills", method = RequestMethod.GET)
-	public String getEditTechSkills(Model model) {
+	public String getEditSkills(Model model) {
 		model.addAttribute("skillForm", new SkillForm(accountRepository.findOne(1L).getSkills()));
 		return gotoSkillsJSP(model);
 	}
 	
 	@RequestMapping(value = "/edit/skills", method = RequestMethod.POST)
-	public String saveEditTechSkills(@ModelAttribute("skillForm") SkillForm form, BindingResult bindingResult, Model model) {
+	public String saveEditSkills(@Valid @ModelAttribute("skillForm") SkillForm form, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return gotoSkillsJSP(model);
         }
@@ -58,13 +64,56 @@ public class EditAccountController {
 		model.addAttribute("skillCategories", skillCategoryRepository.findAll(new Sort("id")));
 		return "edit/skills";
 	}
-
-	@RequestMapping(value = "/edit/practics", method = {RequestMethod.GET,RequestMethod.POST})
+	
+	/*Practics*/
+	@RequestMapping(value = "/edit/practics", method = RequestMethod.GET)
 	public String getEditPractics(Model model) {
-		model.addAttribute("practics", accountRepository.findOne(1L).getPractics());
+		model.addAttribute("practicForm",new PracticForm(accountRepository.findOne(1L).getPractics()));
 		return "edit/practics";
 	}
-
+	
+	@RequestMapping(value = "/edit/practics", method = RequestMethod.POST)
+	public String saveEditPractic(@Valid @ModelAttribute("practicForm") PracticForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "edit/practics";
+        }
+		//TODO Update practic 
+		return "redirect:/chloe-albertson";
+	}
+	
+	/*Languages*/
+	@RequestMapping(value = "/edit/languages", method = RequestMethod.GET)
+	public String getEditLanguages(Model model) {
+		model.addAttribute("languageForm", new LanguageForm(accountRepository.findOne(1L).getLanguages()));
+		return "edit/languages";
+	}
+	@RequestMapping(value = "/edit/languages", method = RequestMethod.POST)
+	public String saveEditLanguages(@Valid @ModelAttribute("languageForm") LanguageForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "edit/languages";
+        }
+		//TODO Update languages 
+		return "redirect:/chloe-albertson";
+	}
+	
+	/*Courses*/
+	@RequestMapping(value = "/edit/courses", method = RequestMethod.GET)
+	public String getEditCourses(Model model) {
+		model.addAttribute("courseForm",new CoursesForm( accountRepository.findOne(8L).getCourses()));
+		return "edit/courses";
+	}
+	@RequestMapping(value = "/edit/courses", method = RequestMethod.POST)
+	public String saveEdit—ourses(@Valid @ModelAttribute("courseForm") CoursesForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "edit/courses";
+        }
+		//TODO Update courses 
+		return "redirect:/chloe-albertson";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/edit/certificates", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditCertificates(Model model) {
 		model.addAttribute("certificates", accountRepository.findOne(1L).getCertificates());
@@ -76,11 +125,7 @@ public class EditAccountController {
 		return "edit/certificates-upload";
 	}
 
-	@RequestMapping(value = "/edit/courses", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditCourses(Model model) {
-		model.addAttribute("courses", accountRepository.findOne(1L).getCourses());
-		return "edit/courses";
-	}
+	
 
 	@RequestMapping(value = "/edit/education", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditEducation(Model model) {
@@ -88,12 +133,7 @@ public class EditAccountController {
 		return "edit/education";
 	}
 
-	@RequestMapping(value = "/edit/languages", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getEditLanguages(Model model) {
-		model.addAttribute("languages", accountRepository.findOne(1L).getLanguages());
-		return "edit/languages";
-	}
-
+	
 	@RequestMapping(value = "/edit/hobbies", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEditHobbies(Model model) {
 		model.addAttribute("hobbies", accountRepository.findOne(1L).getHobbies());
