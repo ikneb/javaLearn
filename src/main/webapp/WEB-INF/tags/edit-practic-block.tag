@@ -36,18 +36,18 @@
 		<div class="col-lg-3 col-sm-3 ">
 			<div class="input-practic">
 				<label for="begin-month">Дата начала</label> <select class="form-control" id="begin-month" name="items[${index }].beginDateMonth">
-					<option ${practic.beginDateMonth == 1 ? ' selected="selected"' : ''}>1</option>
-					<option ${practic.beginDateMonth == 2 ? ' selected="selected"' : ''}>2</option>
-					<option ${practic.beginDateMonth == 3 ? ' selected="selected"' : ''}>3</option>
-					<option ${practic.beginDateMonth == 4 ? ' selected="selected"' : ''}>4</option>
-					<option ${practic.beginDateMonth == 5 ? ' selected="selected"' : ''}>5</option>
-					<option ${practic.beginDateMonth == 6 ? ' selected="selected"' : ''}>6</option>
-					<option ${practic.beginDateMonth == 7 ? ' selected="selected"' : ''}>7</option>
-					<option ${practic.beginDateMonth == 8 ? ' selected="selected"' : ''}>8</option>
-					<option ${practic.beginDateMonth == 9 ? ' selected="selected"' : ''}>9</option>
-					<option ${practic.beginDateMonth == 10 ? ' selected="selected"' : ''}>10</option>
-					<option ${practic.beginDateMonth == 11 ? ' selected="selected"' : ''}>11</option>
-					<option ${practic.beginDateMonth == 12 ? ' selected="selected"' : ''}>12</option>
+					<option ${practic.beginDateMonth == 1 ? ' selected="selected"' : ''}value="1">Jan</option>
+					<option ${practic.beginDateMonth == 2 ? ' selected="selected"' : ''} value="2">Feb</option>
+					<option ${practic.beginDateMonth == 3 ? ' selected="selected"' : ''} value="3">Mar</option>
+					<option ${practic.beginDateMonth == 4 ? ' selected="selected"' : ''} value="4">Apr</option>
+					<option ${practic.beginDateMonth == 5 ? ' selected="selected"' : ''} value="5">May</option>
+					<option ${practic.beginDateMonth == 6 ? ' selected="selected"' : ''} value="6">Jun</option>
+					<option ${practic.beginDateMonth == 7 ? ' selected="selected"' : ''} value="7">Jul</option>
+					<option ${practic.beginDateMonth == 8 ? ' selected="selected"' : ''} value="8">Aug</option>
+					<option ${practic.beginDateMonth == 9 ? ' selected="selected"' : ''} value="9">Sep</option>
+					<option ${practic.beginDateMonth == 10 ? ' selected="selected"' : ''} value="10">Oct</option>
+					<option ${practic.beginDateMonth == 11 ? ' selected="selected"' : ''} value="11">Nov</option>
+					<option ${practic.beginDateMonth == 12 ? ' selected="selected"' : ''} value="12">Dec</option>
 				</select>
 			</div>
 		</div>
@@ -90,18 +90,18 @@
 		<div class="col-lg-3 col-sm-3">
 			<div class="input-practic">
 				<label for="finish-month">Дата завершения</label> <select class="form-control" id="finish-month" name="items[${index }].finishDateMonth">
-					<option ${practic.finishDateMonth == 1 ? ' selected="selected"' : ''}>1</option>
-					<option ${practic.finishDateMonth == 2 ? ' selected="selected"' : ''}>2</option>
-					<option ${practic.finishDateMonth == 3 ? ' selected="selected"' : ''}>3</option>
-					<option ${practic.finishDateMonth == 4 ? ' selected="selected"' : ''}>4</option>
-					<option ${practic.finishDateMonth == 5 ? ' selected="selected"' : ''}>5</option>
-					<option ${practic.finishDateMonth == 6 ? ' selected="selected"' : ''}>6</option>
-					<option ${practic.finishDateMonth == 7 ? ' selected="selected"' : ''}>7</option>
-					<option ${practic.finishDateMonth == 8 ? ' selected="selected"' : ''}>8</option>
-					<option ${practic.finishDateMonth == 9 ? ' selected="selected"' : ''}>9</option>
-					<option ${practic.finishDateMonth == 10 ? ' selected="selected"' : ''}>10</option>
-					<option ${practic.finishDateMonth == 11 ? ' selected="selected"' : ''}>11</option>
-					<option ${practic.finishDateMonth == 12 ? ' selected="selected"' : ''}>12</option>
+					<option ${practic.finishDateMonth == 1 ? ' selected="selected"' : ''}value="1">Jan</option>
+					<option ${practic.finishDateMonth == 2 ? ' selected="selected"' : ''} value="2">Feb</option>
+					<option ${practic.finishDateMonth == 3 ? ' selected="selected"' : ''} value="3">Mar</option>
+					<option ${practic.finishDateMonth == 4 ? ' selected="selected"' : ''} value="4">Apr</option>
+					<option ${practic.finishDateMonth == 5 ? ' selected="selected"' : ''} value="5">May</option>
+					<option ${practic.finishDateMonth == 6 ? ' selected="selected"' : ''} value="6">Jun</option>
+					<option ${practic.finishDateMonth == 7 ? ' selected="selected"' : ''} value="7">Jul</option>
+					<option ${practic.finishDateMonth == 8 ? ' selected="selected"' : ''} value="8">Aug</option>
+					<option ${practic.finishDateMonth == 9 ? ' selected="selected"' : ''} value="9">Sep</option>
+					<option ${practic.finishDateMonth == 10 ? ' selected="selected"' : ''} value="10">Oct</option>
+					<option ${practic.finishDateMonth == 11 ? ' selected="selected"' : ''} value="11">Nov</option>
+					<option ${practic.finishDateMonth == 12 ? ' selected="selected"' : ''} value="12">Dec</option>
 				</select>
 			</div>
 		</div>

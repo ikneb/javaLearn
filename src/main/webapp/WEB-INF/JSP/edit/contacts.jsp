@@ -7,7 +7,7 @@
 <div class="container">
 	<div id="content">
 		<ul id="tabs" class="nav nav-tabs">
-			<li><a href="#basis">Basis</a></li>
+			<li><a href="/edit/edit">Basis</a></li>
 			<li class="active"><a href="/edit/contacts">Contacts</a></li>
 			<li><a href="/edit/skills">Technical skills</a></li>
 			<li><a href="/edit/practics">Practic</a></li>
@@ -19,7 +19,6 @@
 			<li><a href="/edit/info">Additional Info</a></li>
 		</ul>
 		<div class="tab-content brd">
-
 			<div class="panel panel-default">
 				<form:form action="/edit/contacts" method="post" commandName="contactForm">
 					<div class="tab-pane" id="contacts">
@@ -31,7 +30,7 @@
 									<div class="form-group">
 										<label for="inputSkyp" class="col-lg-4 control-label text">Skyp</label>
 										<div class="col-lg-8">
-											<input class="form-control" id="inputSkyp" name="contact.skype" value="${contact.skype}">
+											<input class="form-control" id="inputSkyp" name="contact.skype" value="${contactForm.contact.skype}">
 										</div>
 										<div class="row skill-delim">
 												<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
@@ -49,7 +48,7 @@
 									</blockquote>
 								</div>
 							</div>
-						</div>,2
+						</div>
 						<div class="container">
 							<div class="row">
 								<hr class="col-lg-7">
@@ -58,7 +57,7 @@
 										<div class="form-group">
 											<label for="inputVcontakte" class="col-lg-4 control-label text">Vcontakte</label>
 											<div class="col-lg-8">
-												<input class="form-control" id="inputVcontakte" name="contact.vkontakte" value="${contact.vkontakte}">
+												<input class="form-control" id="inputVcontakte" name="contact.vkontakte" value="${contactForm.contact.vkontakte}">
 											</div>
 											<div class="row skill-delim">
 												<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
@@ -73,7 +72,7 @@
 										<div class="form-group">
 											<label for="inputFacebook" class="col-lg-4 control-label text">Facebook</label>
 											<div class="col-lg-8">
-												<input class="form-control" id="inputFacebook" name="contact.facebook" value="${contact.facebook}">
+												<input class="form-control" id="inputFacebook" name="contact.facebook" value="${contactForm.contact.facebook}">
 											</div>
 											<div class="row skill-delim">
 												<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
@@ -87,7 +86,7 @@
 										<div class="form-group">
 											<label for="inputLinkedin" class="col-lg-4 control-label text">Linkedin</label>
 											<div class="col-lg-8">
-												<input class="form-control" id="inputLinkedin" name="contact.linkedin" value="${contact.linkedin}">
+												<input class="form-control" id="inputLinkedin" name="contact.linkedin" value="${contactForm.contact.linkedin}">
 											</div>
 											<div class="row skill-delim">
 												<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
@@ -103,7 +102,7 @@
 										<div class="form-group">
 											<label for="inputGithub" class="col-lg-4 control-label text">Github</label>
 											<div class="col-lg-8">
-												<input class="form-control" id="inputGithub" placeholder="" name="contact.github" value="${contact.github}">
+												<input class="form-control" id="inputGithub" placeholder="" name="contact.github" value="${contactForm.contact.github}">
 											</div>
 											<div class="row skill-delim">
 												<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
@@ -119,7 +118,7 @@
 										<div class="form-group">
 											<label for="inputStackoverflow" class="col-lg-4 control-label text">Stackoverflow</label>
 											<div class="col-lg-8">
-												<input class="form-control" id="inputStackoverflow" name="contact.stackoverflow" value="${contact.stackoverflow}">
+												<input class="form-control" id="inputStackoverflow" name="contact.stackoverflow" value="${contactForm.contact.stackoverflow}">
 											</div>
 											<div class="row skill-delim">
 												<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">

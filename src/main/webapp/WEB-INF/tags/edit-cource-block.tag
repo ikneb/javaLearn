@@ -36,18 +36,18 @@
 		<div class="col-lg-2 col-sm-2">
 			<div class="input-practic">
 				<label for="finish-month">Окончания</label> <select class="form-control" id="finish-month" name="items[${index }].finishDateMonth">
-					<option ${practcourseic.finishDateMonth == 1 ? ' selected="selected"' : ''}>1</option>
-					<option ${course.finishDateMonth == 2 ? ' selected="selected"' : ''}>2</option>
-					<option ${course.finishDateMonth == 3 ? ' selected="selected"' : ''}>3</option>
-					<option ${course.finishDateMonth == 4 ? ' selected="selected"' : ''}>4</option>
-					<option ${course.finishDateMonth == 5 ? ' selected="selected"' : ''}>5</option>
-					<option ${course.finishDateMonth == 6 ? ' selected="selected"' : ''}>6</option>
-					<option ${course.finishDateMonth == 7 ? ' selected="selected"' : ''}>7</option>
-					<option ${course.finishDateMonth == 8 ? ' selected="selected"' : ''}>8</option>
-					<option ${course.finishDateMonth == 9 ? ' selected="selected"' : ''}>9</option>
-					<option ${course.finishDateMonth == 10 ? ' selected="selected"' : ''}>10</option>
-					<option ${course.finishDateMonth == 11 ? ' selected="selected"' : ''}>11</option>
-					<option ${course.finishDateMonth == 12 ? ' selected="selected"' : ''}>12</option>
+					<option ${practcourseic.finishDateMonth == 1 ? ' selected="selected"' : ''}value="1">Jan</option>
+					<option ${course.finishDateMonth == 2 ? ' selected="selected"' : ''} value="2">Feb</option>
+					<option ${course.finishDateMonth == 3 ? ' selected="selected"' : ''} value="3">Mar</option>
+					<option ${course.finishDateMonth == 4 ? ' selected="selected"' : ''} value="4">Apr</option>
+					<option ${course.finishDateMonth == 5 ? ' selected="selected"' : ''} value="5">May</option>
+					<option ${course.finishDateMonth == 6 ? ' selected="selected"' : ''} value="6">Jun</option>
+					<option ${course.finishDateMonth == 7 ? ' selected="selected"' : ''} value="7">Jul</option>
+					<option ${course.finishDateMonth == 8 ? ' selected="selected"' : ''} value="8">Aug</option>
+					<option ${course.finishDateMonth == 9 ? ' selected="selected"' : ''} value="9">Sep</option>
+					<option ${course.finishDateMonth == 10 ? ' selected="selected"' : ''} value="10">Oct</option>
+					<option ${course.finishDateMonth == 11 ? ' selected="selected"' : ''} value="11">Nov</option>
+					<option ${course.finishDateMonth == 12 ? ' selected="selected"' : ''} value="12">Dec</option>
 				</select>
 			</div>
 		</div>

@@ -39,7 +39,7 @@ public class PublicDataController {
 	
 	@RequestMapping(value="/welcome",method=RequestMethod.GET)
 	public String getWelcome(Model model){
-		Pageable pageable = new PageRequest(1,10);
+		Pageable pageable = new PageRequest(1,20);
 		Page<Account> accounts  = accountRepository.findAllByCompletedTrue(pageable);
 		model.addAttribute("accounts", accounts);
 		return "welcome";

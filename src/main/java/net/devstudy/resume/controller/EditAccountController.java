@@ -21,6 +21,7 @@ import net.devstudy.resume.form.PracticForm;
 import net.devstudy.resume.form.SkillForm;
 import net.devstudy.resume.form.UploadExampleForm;
 import net.devstudy.resume.repository.storage.AccountRepository;
+import net.devstudy.resume.repository.storage.HobbyRepository;
 import net.devstudy.resume.repository.storage.SkillCategoryRepository;
 
 @Controller
@@ -30,10 +31,22 @@ public class EditAccountController {
 	private SkillCategoryRepository skillCategoryRepository;
 	@Autowired
 	private AccountRepository accountRepository;
+	@Autowired
+	private HobbyRepository hobbyRepository;
 
-	@RequestMapping(value = "/edit", method = { RequestMethod.GET, RequestMethod.POST })
-	public String getEditAccount() {
+	@RequestMapping(value = "/edit/edit", method = RequestMethod.GET)
+	public String getEditAccount(Model model) {
+		model.addAttribute("accountForm",new AccountForm(accountRepository.findOne(1L)));
 		return "edit/edit";
+	}
+	@RequestMapping(value = "/edit/edit", method = RequestMethod.POST)
+	public String saveEditAccount(@Valid @ModelAttribute("accountForm") AccountForm form, BindingResult bindingResult,
+			Model model) {
+		if (bindingResult.hasErrors()) {
+			return "edit/edit";
+		}
+		// TODO Update contacts
+		return "redirect:/chloe-albertson";
 	}
 
 	@RequestMapping(value = "/my-profile", method = RequestMethod.GET)
@@ -44,7 +57,7 @@ public class EditAccountController {
 	/*Contacts*/
 	@RequestMapping(value = "/edit/contacts", method =  RequestMethod.GET)
 	public String getEditContacts(Model model) {
-		model.addAttribute("contact",accountRepository.findOne(1L).getContacts());
+		model.addAttribute("contactForm",new ContactForm(accountRepository.findOne(1L).getContacts()));
 		return "edit/contacts";
 	}
 	@RequestMapping(value = "/edit/contacts", method = RequestMethod.POST)
@@ -80,6 +93,26 @@ public class EditAccountController {
 		return "edit/skills";
 	}
 
+	/* Hobbies */
+	@RequestMapping(value = "/edit/hobbies", method =  RequestMethod.GET)
+	public String getEditHobbies(Model model) {
+		model.addAttribute("hobbyForm",new HobbiesForm(accountRepository.findOne(1L).getHobbies()));
+		return gotoHobbyJSP(model);
+	}
+	@RequestMapping(value = "/edit/hobbies", method = RequestMethod.POST)
+	public String saveEditHobbies(@Valid @ModelAttribute("hobbyForm") HobbiesForm form, BindingResult bindingResult,
+			Model model) {
+		if (bindingResult.hasErrors()) {
+			return gotoHobbyJSP(model);
+		}
+		// TODO Update courses
+		return "redirect:/chloe-albertson";
+	}
+	private String gotoHobbyJSP(Model model) {
+		model.addAttribute("hobbyName", hobbyRepository.findAll(new Sort("id")));
+		return "edit/hobbies";
+	}
+	
 	/* Practics */
 	@RequestMapping(value = "/edit/practics", method = RequestMethod.GET)
 	public String getEditPractics(Model model) {
@@ -159,21 +192,7 @@ public class EditAccountController {
 		return "redirect:/chloe-albertson";
 	}
 
-	/* Hobbies */
-	@RequestMapping(value = "/edit/hobbies", method =  RequestMethod.GET)
-	public String getEditHobbies(Model model) {
-		model.addAttribute("hobbyForm",new HobbiesForm(accountRepository.findOne(1L).getHobbies()));
-		return "edit/hobbies";
-	}
-	@RequestMapping(value = "/edit/hobbies", method = RequestMethod.POST)
-	public String saveEditHobbies(@Valid @ModelAttribute("hobbyForm") HobbiesForm form, BindingResult bindingResult,
-			Model model) {
-		if (bindingResult.hasErrors()) {
-			return "edit/hobbies";
-		}
-		// TODO Update courses
-		return "redirect:/chloe-albertson";
-	}
+	
 
 	/* Info */
 	@RequestMapping(value = "/edit/info", method =  RequestMethod.GET)

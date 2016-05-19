@@ -40,18 +40,28 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private Date birthDay;
 
 	@Column
+	@EnglishLanguage
+	@Size(min=1)
 	private String city;
 
 	@Column
+	@EnglishLanguage
+	@Size(min=1)
 	private String country;
 
 	@Column(name = "first_name", nullable = false, length = 50)
+	@EnglishLanguage
+	@Size(min=1)
 	private String firstName;
 
 	@Column(name = "last_name", nullable = false, length = 50)
+	@EnglishLanguage
+	@Size(min=1)
 	private String lastName;
 
 	@Column(length = 2147483647)
+	@EnglishLanguage
+	@Size(min=1)
 	private String objective;
 
 	@Column(name = "large_photo", length = 255)
@@ -64,6 +74,8 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private String phone;
 
 	@Column(length = 100)
+	@EnglishLanguage
+	@Size(min=1)
 	private String email;
 	
 	@Column
@@ -72,6 +84,8 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private String info;
 
 	@Column(length = 2147483647)
+	@EnglishLanguage
+	@Size(min=1)
 	private String summary;
 
 	@Column(nullable = false, length = 100)
