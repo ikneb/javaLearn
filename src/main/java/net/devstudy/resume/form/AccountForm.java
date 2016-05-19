@@ -1,33 +1,29 @@
 package net.devstudy.resume.form;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import net.devstudy.resume.entity.Account;
 
-public class AccountForm implements Serializable{
-	private static final long serialVersionUID = 4135568197764740034L;
+public class AccountForm {
+	
 	@Valid
-	private List<Account> items = new ArrayList<>();
+	private Account account;
 	
 	public AccountForm() {
 		super();
 	}
 
-	public AccountForm(List<Account> items) {
+	public AccountForm(Account account) {
 		super();
-		this.items = items;
+		this.account = account;
 	}
 
-	public List<Account> getItems() {
-		return items;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setItems(List<Account> items) {
-		this.items = items;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 }

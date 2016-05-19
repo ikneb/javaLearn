@@ -7,6 +7,8 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import net.devstudy.resume.annotation.constraints.EnglishLanguage;
+
 
 @Embeddable
 @Access(AccessType.FIELD)
@@ -14,21 +16,27 @@ public class Contact implements Serializable {
 	private static final long serialVersionUID = -3685720846934765841L;
 	
 	@Column(length = 80)
+	@EnglishLanguage
 	private String skype;
 
 	@Column(length = 255)
+	@EnglishLanguage
 	private String vkontakte;
 
 	@Column(length = 255)
+	@EnglishLanguage
 	private String facebook;
 
 	@Column(length = 255)
+	@EnglishLanguage
 	private String linkedin;
 
 	@Column(length = 255)
+	@EnglishLanguage
 	private String github;
 	
 	@Column(length = 255)
+	@EnglishLanguage
 	private String stackoverflow;
 
 	public Contact() {

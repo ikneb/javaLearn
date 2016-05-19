@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.devstudy.resume.form.AccountForm;
+import net.devstudy.resume.form.ContactForm;
 import net.devstudy.resume.form.CoursesForm;
 import net.devstudy.resume.form.EducationsForm;
 import net.devstudy.resume.form.HobbiesForm;
@@ -39,12 +40,23 @@ public class EditAccountController {
 	public String getMyProfile() {
 		return "my-profile";
 	}
-
-	@RequestMapping(value = "/edit/contacts", method = { RequestMethod.GET, RequestMethod.POST })
-	public String getEditContacts() {
-
-		return "edit-contacts";
+	
+	/*Contacts*/
+	@RequestMapping(value = "/edit/contacts", method =  RequestMethod.GET)
+	public String getEditContacts(Model model) {
+		model.addAttribute("contact",accountRepository.findOne(1L).getContacts());
+		return "edit/contacts";
 	}
+	@RequestMapping(value = "/edit/contacts", method = RequestMethod.POST)
+	public String saveEditContacts(@Valid @ModelAttribute("contactForm") ContactForm form, BindingResult bindingResult,
+			Model model) {
+		if (bindingResult.hasErrors()) {
+			return "edit/contacts";
+		}
+		// TODO Update contacts
+		return "redirect:/chloe-albertson";
+	}
+	
 
 	/* Skills */
 	@RequestMapping(value = "/edit/skills", method = RequestMethod.GET)
@@ -166,7 +178,7 @@ public class EditAccountController {
 	/* Info */
 	@RequestMapping(value = "/edit/info", method =  RequestMethod.GET)
 	public String getEditInfo(Model model) {
-		model.addAttribute("info",accountRepository.findOne(1L).getInfo());
+		model.addAttribute("accountForm", new AccountForm(accountRepository.findOne(1L)));
 		return "edit/info";
 	}
 	@RequestMapping(value = "/edit/info", method = RequestMethod.POST)
@@ -175,7 +187,7 @@ public class EditAccountController {
 		if (bindingResult.hasErrors()) {
 			return "edit/info";
 		}
-		// TODO Update courses
+		// TODO Update info
 		return "redirect:/chloe-albertson";
 	}
 	
