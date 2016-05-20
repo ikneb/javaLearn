@@ -23,6 +23,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
+import net.devstudy.resume.annotation.constraints.Phone;
 
 
 @Entity
@@ -71,6 +72,8 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private String smallPhoto;
 
 	@Column(length = 20)
+	@Phone
+	@Size(max=17)
 	private String phone;
 
 	@Column(length = 100)
