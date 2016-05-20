@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
+import net.devstudy.resume.annotation.constraints.Adulthood;
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 import net.devstudy.resume.annotation.constraints.Phone;
 
@@ -38,6 +39,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private Long id;
 
 	@Column(name = "birth_day")
+	@Adulthood
 	private Date birthDay;
 
 	@Column

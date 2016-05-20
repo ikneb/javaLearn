@@ -57,7 +57,7 @@
 									<div class="form-group">
 										<label for="inputBirthday" class="col-lg-4 control-label text">Birthday*</label>
 										<div class="col-lg-8">
-											<input class="form-control" id="inputBirthday" placeholder="1991-03-20" value="${accountForm.account.birthDay}" name="account.birthDay">
+											<input class="form-control" id="inputBirthday" placeholder="1991-03-20" value="${accountForm.account.birthDay}" name="account.birthDay" required="required">
 										</div>
 										<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 												<form:errors path="account.birthDay" cssClass="alert alert-danger" element="div" />
@@ -76,7 +76,7 @@
 									<div class="form-group">
 										<label for="inputCountry" class="col-lg-4 control-label text">Country*</label>
 										<div class="col-lg-8">
-											<input class="form-control" id="inputCountry" placeholder="Ukraine" value="${accountForm.account.country}" name="account.country">
+											<input class="form-control" id="inputCountry" placeholder="Ukraine" value="${accountForm.account.country}" name="account.country" required="required">
 										</div>
 										<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 												<form:errors path="account.country" cssClass="alert alert-danger" element="div" />
@@ -93,7 +93,7 @@
 									<div class="form-group">
 										<label for="inputCity" class="col-lg-4 control-label text">City*</label>
 										<div class="col-lg-8">
-											<input class="form-control" id="inputCity" placeholder="Kiev" value="${accountForm.account.city}" name="account.city">
+											<input class="form-control" id="inputCity" placeholder="Kiev" value="${accountForm.account.city}" name="account.city" required="required">
 										</div>
 										<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 												<form:errors path="account.city" cssClass="alert alert-danger" element="div" />
@@ -111,7 +111,7 @@
 										<label for="inputEmail" class="col-lg-4 control-label text">Email*</label>
 										<div class="col-lg-8">
 											<input class="form-control" id="inputEmail" placeholder="nakonecniy-eduard@gmail.com" value="${accountForm.account.email}"
-												name="account.email">
+												name="account.email" required="required">
 										</div>
 										<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 												<form:errors path="account.email" cssClass="alert alert-danger" element="div" />
@@ -135,7 +135,7 @@
 									<div class="form-group">
 										<label for="inputPhone" class="col-lg-4 control-label text">Phone*</label>
 										<div class="col-lg-8">
-											<input class="form-control" id="inputEmail" placeholder="+380992334455" value="${accountForm.account.phone}" name="account.phone">
+											<input class="form-control" id="inputEmail" placeholder="+380992334455" value="${accountForm.account.phone}" name="account.phone" required="required">
 										</div>
 										<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 												<form:errors path="account.phone" cssClass="alert alert-danger" element="div" />
@@ -156,7 +156,7 @@
 										<label for="inputObjective" class="col-lg-4 control-label text">Objective*</label>
 										<div class="col-lg-8">
 											<input class="form-control" id="inputEmail" placeholder="Junior Java Developer" value="${accountForm.account.objective}"
-												name="account.objective">
+												name="account.objective" required="required">
 										</div>
 										<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 												<form:errors path="account.objective" cssClass="alert alert-danger" element="div" />
@@ -175,7 +175,7 @@
 									<div class="form-group">
 										<label for="qualifications" class="col-lg-4 control-label text">Your qualifications</label>
 										<div class="col-lg-8">
-											<textarea class="form-control" rows="5" id="qualifications" name="account.summary">${accountForm.account.summary}</textarea>
+											<textarea class="form-control" rows="5" id="qualifications" name="account.summary" required="required">${accountForm.account.summary}</textarea>
 										</div>
 										<div class="row skill-delim">
 											<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
