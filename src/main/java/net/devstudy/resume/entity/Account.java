@@ -217,6 +217,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setCertificates(List<Certificate> certificates) {
 		this.certificates = certificates;
+		updateListSetAccount(this.certificates);
 	}
 
 	public List<Education> getEducations() {
@@ -225,6 +226,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setEducations(List<Education> educations) {
 		this.educations = educations;
+		updateListSetAccount(this.educations);
 	}
 
 	public List<Hobby> getHobbies() {
@@ -233,6 +235,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setHobbies(List<Hobby> hobbies) {
 		this.hobbies = hobbies;
+		updateListSetAccount(this.hobbies);
 	}
 
 	public List<Language> getLanguages() {
@@ -241,6 +244,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setLanguages(List<Language> languages) {
 		this.languages = languages;
+		updateListSetAccount(this.languages);
 	}
 
 	public List<Practic> getPractics() {
@@ -249,6 +253,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setPractics(List<Practic> practics) {
 		this.practics = practics;
+		updateListSetAccount(this.practics);
 	}
 
 	public List<Skill> getSkills() {
@@ -257,14 +262,18 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+		updateListSetAccount(this.skills);
 	}
-
+	
+	
+	
 	public List<Course> getCourses() {
 		return courses;
 	}
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+		updateListSetAccount(this.courses);
 	}
 
 	public String getLargePhoto() {
@@ -370,5 +379,13 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	public void setContacts(Contact contact) {
 		this.contact = contact;
+	}
+	
+	private void updateListSetAccount(List<? extends AccountEntity> list){
+		if(list != null){
+			for(AccountEntity entity : list){
+				entity.setAccount(this);
+			}
+		}
 	}
 }

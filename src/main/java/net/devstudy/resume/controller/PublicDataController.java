@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.devstudy.resume.entity.Account;
-import net.devstudy.resume.repository.storage.AccountRepository;
+import net.devstudy.resume.service.FindAccountService;
 
 @Controller
 public class PublicDataController {
 	
 	@Autowired
-	private AccountRepository accountRepository;
+	private FindAccountService findAccountService;
 	
 	
 	@RequestMapping(value="/{uid}",method=RequestMethod.GET)
 	public String getAccount(@PathVariable("uid")String uid, Model model){
-		Account account = accountRepository.findByUid(uid);
+		Account account = findAccountService.findByUid(uid);
 		if(account == null){
 			return "account_not_found";
 		}
@@ -40,7 +40,7 @@ public class PublicDataController {
 	@RequestMapping(value="/welcome",method=RequestMethod.GET)
 	public String getWelcome(Model model){
 		Pageable pageable = new PageRequest(1,20);
-		Page<Account> accounts  = accountRepository.findAllByCompletedTrue(pageable);
+		Page<Account> accounts  = findAccountService.findAllByCompletedTrue(pageable);
 		model.addAttribute("accounts", accounts);
 		return "welcome";
 	}
