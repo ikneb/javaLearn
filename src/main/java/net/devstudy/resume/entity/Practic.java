@@ -16,13 +16,16 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.URL;
 import org.joda.time.DateTime;
 
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
+import net.devstudy.resume.annotation.constraints.FirstFieldLessThanSecond;
 
 
 @Entity
 @Table(name = "practic")
+@FirstFieldLessThanSecond(first="beginDate", second="finishDate")
 public class Practic extends AbstractFinishDateEntity<Long> implements Serializable, AccountEntity {
 	private static final long serialVersionUID = 1L;
 
@@ -38,9 +41,11 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 	private String company;
 
 	@Column(length = 255)
+	@URL
 	private String demo;
 
 	@Column(length = 255)
+	@URL
 	private String src;
 
 	@Column(nullable = false, length = 100)

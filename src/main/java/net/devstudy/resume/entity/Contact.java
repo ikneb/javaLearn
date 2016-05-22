@@ -7,6 +7,8 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.URL;
+
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 
 
@@ -21,22 +23,27 @@ public class Contact implements Serializable {
 
 	@Column(length = 255)
 	@EnglishLanguage
+	@URL
 	private String vkontakte;
 
 	@Column(length = 255)
 	@EnglishLanguage
+	@URL
 	private String facebook;
 
 	@Column(length = 255)
 	@EnglishLanguage
+	@URL
 	private String linkedin;
 
 	@Column(length = 255)
 	@EnglishLanguage
+	@URL
 	private String github;
 	
 	@Column(length = 255)
 	@EnglishLanguage
+	@URL
 	private String stackoverflow;
 
 	public Contact() {

@@ -25,18 +25,15 @@
 				<label for="usr">Компания или организация</label> <input type="text" class="form-control" name="items[${index }].company"
 					value="${practic.company}">
 			</div>
-			<div class="row skill-delim">
-				<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
-					<form:errors path="items[${index }].company" cssClass="alert alert-danger" element="div" />
-				</div>
-			</div>
+			<div class="row skill-delim"></div>
 		</div>
 	</div>
 	<div class="row">
+
 		<div class="col-lg-3 col-sm-3 ">
 			<div class="input-practic">
 				<label for="begin-month">Дата начала</label> <select class="form-control" id="begin-month" name="items[${index }].beginDateMonth">
-					<option ${practic.beginDateMonth == 1 ? ' selected="selected"' : ''}value="1">Jan</option>
+					<option ${practic.beginDateMonth == 1 ? ' selected="selected"' : ''} value="1">Jan</option>
 					<option ${practic.beginDateMonth == 2 ? ' selected="selected"' : ''} value="2">Feb</option>
 					<option ${practic.beginDateMonth == 3 ? ' selected="selected"' : ''} value="3">Mar</option>
 					<option ${practic.beginDateMonth == 4 ? ' selected="selected"' : ''} value="4">Apr</option>
@@ -86,11 +83,17 @@
 					<option ${practic.beginDateYear == 2016 ? ' selected="selected"' : ''}>2016</option>
 				</select>
 			</div>
+			<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
+				<form:errors path="items[${index }]" cssClass="alert alert-danger" element="div" />
+			</div>
+
 		</div>
+
+
 		<div class="col-lg-3 col-sm-3">
 			<div class="input-practic">
 				<label for="finish-month">Дата завершения</label> <select class="form-control" id="finish-month" name="items[${index }].finishDateMonth">
-					<option ${practic.finishDateMonth == 1 ? ' selected="selected"' : ''}value="1">Jan</option>
+					<option ${practic.finishDateMonth == 1 ? ' selected="selected"' : ''} value="1">Jan</option>
 					<option ${practic.finishDateMonth == 2 ? ' selected="selected"' : ''} value="2">Feb</option>
 					<option ${practic.finishDateMonth == 3 ? ' selected="selected"' : ''} value="3">Mar</option>
 					<option ${practic.finishDateMonth == 4 ? ' selected="selected"' : ''} value="4">Apr</option>
@@ -141,26 +144,33 @@
 				</select>
 			</div>
 		</div>
-	</div>
 
+
+	</div>
 	<div class="input-practic">
 		<label for="comment">Обязаности/Достижения</label>
 		<textarea class="form-control" rows="5" id="comment" name="items[${index }].responsibilities">${practic.responsibilities}</textarea>
 	</div>
 	<div class="row skill-delim">
-				<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
-					<form:errors path="items[${index }].responsibilities" cssClass="alert alert-danger" element="div" />
-				</div>
-			</div>
+		<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
+			<form:errors path="items[${index }].responsibilities" cssClass="alert alert-danger" element="div" />
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-lg-6 col-sm-6">
 			<div class="input-practic">
 				<label for="usr">Ссылка на демо</label> <input type="text" class="form-control" name="items[${index }].demo" value="${practic.demo}">
 			</div>
+			<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
+				<form:errors path="items[${index }].demo" cssClass="alert alert-danger" element="div" />
+			</div>
 		</div>
 		<div class="col-lg-6 col-sm-6">
 			<div class="input-practic">
 				<label for="usr">Исходный код</label> <input type="text" class="form-control" name="items[${index }].src" value="${practic.src}">
+			</div>
+			<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
+				<form:errors path="items[${index }].src" cssClass="alert alert-danger" element="div" />
 			</div>
 		</div>
 	</div>

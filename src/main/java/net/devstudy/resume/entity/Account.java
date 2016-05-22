@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -81,6 +82,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	@Column(length = 100)
 	@EnglishLanguage
 	@Size(min=1)
+	@Email
 	private String email;
 	
 	@Column
