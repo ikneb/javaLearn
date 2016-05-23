@@ -6,6 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +21,12 @@ import net.devstudy.resume.entity.Language;
 import net.devstudy.resume.entity.Practic;
 import net.devstudy.resume.entity.Skill;
 import net.devstudy.resume.entity.SkillCategory;
+import net.devstudy.resume.exception.CantCompleteClientRequestException;
 import net.devstudy.resume.form.SignUpForm;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.repository.storage.SkillCategoryRepository;
 import net.devstudy.resume.service.EditAccountService;
+import net.devstudy.resume.util.DataUtil;
 
 @Service
 public class EditAccountServiceImpl implements EditAccountService {
@@ -34,11 +37,41 @@ public class EditAccountServiceImpl implements EditAccountService {
 	@Autowired
 	private SkillCategoryRepository skillCategoryRepository;
 	
+	@Value("${generate.uid.suffix.length}")
+	private int generateUidSuffixLength;
+
+	@Value("${generate.uid.alphabet}")
+	private String generateUidAlphabet;
+
+	@Value("${generate.uid.max.try.count}")
+	private int maxTryCountToGenerateUid;
+	
 	@Override
+	@Transactional
 	public Account createNewProfile(SignUpForm signUpForm) {
-		return null;
+		Account account = new Account();
+		account.setUid(generateAccountUid(signUpForm));
+		account.setFirstName(DataUtil.capitalizeName(signUpForm.getFirstName()));
+		account.setLastName(DataUtil.capitalizeName(signUpForm.getLastName()));
+		account.setPassword(signUpForm.getPassword());
+		account.setCompleted(false);
+		accountRepository.save(account);
+		return account;
+		
 	}
 
+	private String generateAccountUid(SignUpForm signUpForm) throws CantCompleteClientRequestException {
+		String baseUid = DataUtil.generateAccountUid(signUpForm);
+		String uid = baseUid;
+		for (int i = 0; accountRepository.countByUid(uid) > 0; i++) {
+			uid = DataUtil.regenerateUidWithRandomSuffix(baseUid, generateUidAlphabet, generateUidSuffixLength);
+			if (i >= maxTryCountToGenerateUid) {
+				throw new CantCompleteClientRequestException("Can't generate unique uid for account: " + baseUid+": maxTryCountToGenerateUid detected");
+			}
+		}
+		return uid;
+	}
+	
 	@Override
 	public List<Skill> listSkills(long idAccount) {
 		return accountRepository.findOne(idAccount).getSkills();
@@ -48,8 +81,6 @@ public class EditAccountServiceImpl implements EditAccountService {
 	public List<SkillCategory> listSkillCategories() {
 		return skillCategoryRepository.findAll(new Sort("id"));
 	}
-
-	
 
 	@Override
 	public List<Hobby> listHobbies(long idAccount) {
