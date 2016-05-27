@@ -27,18 +27,13 @@
 
 					<div style="text-align: center;">
 
-						<c:forEach var="certificat" items="${certificates}" varStatus="status">
+						<c:forEach var="certificat" items="${certificateForm.items}" varStatus="status">
 							<div class="frame-certificates">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 								<br>
-								<image src="${certificat.smallUrl}" />
+								<img src="${certificat.smallUrl}" />
 							</div>
 						</c:forEach>
-
-
-
-
-
 					</div>
 					<hr>
 					<div style="text-align: center;">

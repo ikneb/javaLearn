@@ -19,7 +19,7 @@ import net.devstudy.resume.repository.storage.AccountRepository;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class RemoveNotCompletedProfileService {
+public class RemoveNotCompletedAccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;

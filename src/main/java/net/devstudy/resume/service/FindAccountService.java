@@ -10,4 +10,10 @@ public interface FindAccountService {
 	Account findByUid(String uid);
 	
 	Page<Account> findAllByCompletedTrue(Pageable pageable);
+	
+	Page<Account> findAll(Pageable pageable);
+	
+	Iterable<Account> findAllForIndexing();
+	 	
+	 	Page<Account> findBySearchQuery(String query, Pageable pageable);
 }

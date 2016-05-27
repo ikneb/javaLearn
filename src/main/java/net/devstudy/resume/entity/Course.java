@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 
 
@@ -41,6 +43,7 @@ public class Course extends AbstractFinishDateEntity<Long> implements Serializab
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_account", nullable = false)
+	@JsonIgnore
 	private Account account;
 
 	public Long getId() {

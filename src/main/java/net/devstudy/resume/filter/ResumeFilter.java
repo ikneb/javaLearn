@@ -24,24 +24,27 @@ public class ResumeFilter extends AbstractFilter{
 			chain.doFilter(req, resp);
 		} catch (Throwable th) {
 			LOGGER.error("Process request failed: " + requestUrl,th);
-			handleExeption(th, requestUrl, resp);
+			handleException(th, requestUrl, resp);
 		}
 		
 	}
 	
-	private void handleExeption(Throwable th, String requestUrl, HttpServletResponse resp)
-			throws IOException, ServletException {
-		if(production){
-			if("/error".equals(requestUrl)){
-				throw new ServletException(th);
-			}else { 
-				resp.sendRedirect("/error?url="+requestUrl);
+	private void handleException(Throwable th, String requestUrl, HttpServletResponse resp) throws ServletException, IOException {
+		if (production) {
+			if (requestUrl.startsWith("/fragment") || "/error".equals(requestUrl)) {
+				sendErrorStatus(resp);
+			} else {
+				resp.sendRedirect("/error?url=" + requestUrl);
 			}
-		}else{
-			throw new ServletException(th); 
+		} else {
+			throw new ServletException(th);
 		}
-		
-		
 	}
-
+	private void sendErrorStatus(HttpServletResponse resp) throws IOException {
+		resp.reset();
+		resp.getWriter().write("");
+		resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	}
 }
+
+

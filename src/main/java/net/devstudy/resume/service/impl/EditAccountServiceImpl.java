@@ -1,5 +1,6 @@
 package net.devstudy.resume.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import net.devstudy.resume.entity.Account;
 import net.devstudy.resume.entity.Certificate;
@@ -23,15 +26,19 @@ import net.devstudy.resume.entity.Skill;
 import net.devstudy.resume.entity.SkillCategory;
 import net.devstudy.resume.exception.CantCompleteClientRequestException;
 import net.devstudy.resume.form.SignUpForm;
+import net.devstudy.resume.repository.search.AccountSearchRepository;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.repository.storage.SkillCategoryRepository;
 import net.devstudy.resume.service.EditAccountService;
 import net.devstudy.resume.util.DataUtil;
 
 @Service
+@SuppressWarnings("unchecked")
 public class EditAccountServiceImpl implements EditAccountService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EditAccountServiceImpl.class);
 
+	@Autowired
+	private AccountSearchRepository accountSearchRepository;
 	@Autowired
 	private AccountRepository accountRepository;
 	@Autowired
@@ -48,7 +55,7 @@ public class EditAccountServiceImpl implements EditAccountService {
 	
 	@Override
 	@Transactional
-	public Account createNewProfile(SignUpForm signUpForm) {
+	public Account createNewAccount(SignUpForm signUpForm) {
 		Account account = new Account();
 		account.setUid(generateAccountUid(signUpForm));
 		account.setFirstName(DataUtil.capitalizeName(signUpForm.getFirstName()));
@@ -56,10 +63,28 @@ public class EditAccountServiceImpl implements EditAccountService {
 		account.setPassword(signUpForm.getPassword());
 		account.setCompleted(false);
 		accountRepository.save(account);
+		registerCreateIndexAccountIfTrancationSuccess(account);
 		return account;
 		
 	}
+	
+	private void registerCreateIndexAccountIfTrancationSuccess(final Account account) {
+		 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+		 			@Override
+		 			public void afterCommit() {
+		 				LOGGER.info("New account created: {}", account.getUid());
+		 				account.setCertificates(Collections.EMPTY_LIST);
+		 				account.setPractics(Collections.EMPTY_LIST);
+		 				account.setLanguages(Collections.EMPTY_LIST);
+		 				account.setSkills(Collections.EMPTY_LIST);
+		 				account.setCourses(Collections.EMPTY_LIST);
+		 				accountSearchRepository.save(account);
+		 				LOGGER.info("New account index created: {}", account.getUid());
+		 			}
+		 		});
+		 }
 
+	
 	private String generateAccountUid(SignUpForm signUpForm) throws CantCompleteClientRequestException {
 		String baseUid = DataUtil.generateAccountUid(signUpForm);
 		String uid = baseUid;
@@ -122,6 +147,7 @@ public class EditAccountServiceImpl implements EditAccountService {
 		return accountRepository.findOne(idAccount);
 	}
 
+	
 	@Override
 	@Transactional
 	public void updateSkills(long idAccount, List<Skill> updatedData) {
@@ -132,8 +158,26 @@ public class EditAccountServiceImpl implements EditAccountService {
 		} else {
 			account.setSkills(updatedData);
 			accountRepository.save(account);
+			registerUpdateIndexAccountSkillsIfTransactionSuccess(idAccount, updatedData);
 		}
 	}
+	
+	private void registerUpdateIndexAccountSkillsIfTransactionSuccess(final long idAccount, final List<Skill> updatedData) {
+		 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+		 			@Override
+		 			public void afterCommit() {
+		 				LOGGER.info("Account skills updated");
+		 				updateIndexAccountSkills(idAccount, updatedData);
+		 			}
+		 		});
+		 	}
+		 
+		 	private void updateIndexAccountSkills(long idAccount, List<Skill> updatedData) {
+		 		Account account = accountSearchRepository.findOne(idAccount);
+		 		account.setSkills(updatedData);
+		 		accountSearchRepository.save(account);
+		 		LOGGER.info("Account skills index updated");
+		 	}
 	
 	@Override
 	@Transactional
@@ -159,9 +203,27 @@ public class EditAccountServiceImpl implements EditAccountService {
 		} else {
 			account.setLanguages(updatedData);
 			accountRepository.save(account);
+			registerUpdateIndexAccountLanguagesIfTransactionSuccess(idAccount, updatedData);
 		}
 		
 	}
+	
+	private void registerUpdateIndexAccountLanguagesIfTransactionSuccess(final long idAccount, final List<Language> updatedData) {
+ 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+ 			@Override
+ 			public void afterCommit() {
+ 				LOGGER.info("Account languages updated");
+ 				updateIndexAccountLanguages(idAccount, updatedData);
+ 			}
+ 		});
+ 	}
+ 
+ 	private void updateIndexAccountLanguages(long idAccount, List<Language> updatedData) {
+ 		Account account = accountSearchRepository.findOne(idAccount);
+ 		account.setLanguages(updatedData);
+ 		accountSearchRepository.save(account);
+ 		LOGGER.info("Account languages index updated");
+ 	}
 
 	@Override
 	@Transactional
@@ -173,9 +235,26 @@ public class EditAccountServiceImpl implements EditAccountService {
 		} else {
 			account.setCourses(updatedData);
 			accountRepository.save(account);
+			registerUpdateIndexAccountCoursesIfTransactionSuccess( idAccount, updatedData);
 		}
 		
 	}
+	private void registerUpdateIndexAccountCoursesIfTransactionSuccess(final long idAccount, final List<Course> updatedData) {
+ 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+ 			@Override
+ 			public void afterCommit() {
+ 				LOGGER.info("Account courses updated");
+ 				updateIndexAccountCourses(idAccount, updatedData);
+ 			}
+ 		});
+ 	}
+ 
+ 	private void updateIndexAccountCourses(long idAccount, List<Course> updatedData) {
+ 		Account account = accountSearchRepository.findOne(idAccount);
+ 		account.setCourses(updatedData);
+ 		accountSearchRepository.save(account);
+ 		LOGGER.info("Account courses index updated");
+ 	}
 
 	@Override
 	@Transactional
@@ -187,9 +266,26 @@ public class EditAccountServiceImpl implements EditAccountService {
 		} else {
 			account.setCertificates(updatedData);
 			accountRepository.save(account);
+			registerUpdateIndexAccountCertificatesIfTransactionSuccess(idAccount,updatedData);
 		}
 		
 	}
+	private void registerUpdateIndexAccountCertificatesIfTransactionSuccess(final long idAccount, final List<Certificate> updatedData) {
+ 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+ 			@Override
+ 			public void afterCommit() {
+ 				LOGGER.info("Account certificates updated");
+ 				updateIndexAccountCertificates(idAccount, updatedData);
+ 			}
+ 		});
+ 	}
+ 
+ 	private void updateIndexAccountCertificates(long idAccount, List<Certificate> updatedData) {
+ 		Account account = accountSearchRepository.findOne(idAccount);
+ 		account.setCertificates(updatedData);
+ 		accountSearchRepository.save(account);
+ 		LOGGER.info("Account certificates index updated");
+ 	}
 
 	@Override
 	@Transactional
@@ -215,8 +311,25 @@ public class EditAccountServiceImpl implements EditAccountService {
 		} else {
 			account.setPractics(updatedData);
 			accountRepository.save(account);
+			registerUpdateIndexAccountPracticsIfTransactionSuccess(idAccount,updatedData);
 		}
 		
 	}
+	private void registerUpdateIndexAccountPracticsIfTransactionSuccess(final long idAccount, final List<Practic> updatedData) {
+ 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+ 			@Override
+ 			public void afterCommit() {
+ 				LOGGER.info("Account practics updated");
+ 				updateIndexAccountPractics(idAccount, updatedData);
+ 			}
+ 		});
+ 	}
+ 
+ 	private void updateIndexAccountPractics(long idAccount, List<Practic> updatedData) {
+ 		Account account = accountSearchRepository.findOne(idAccount);
+ 		account.setPractics(updatedData);
+ 		accountSearchRepository.save(account);
+ 		LOGGER.info("Account practics index updated");
+ 	}
 
 }

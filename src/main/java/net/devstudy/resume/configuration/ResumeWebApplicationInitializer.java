@@ -57,12 +57,6 @@ public class ResumeWebApplicationInitializer implements WebApplicationInitialize
 		container.addFilter(filterName, filter).addMappingForUrlPatterns(null, true, "/*");
 	}
 	
-/*	private void registerServlet(ServletContext container, Servlet servletInstance, String url) {
-		ServletRegistration.Dynamic servlet = container.addServlet(servletInstance.getClass().getSimpleName(), servletInstance);
-		servlet.setLoadOnStartup(1);
-		servlet.addMapping(url);
-	}*/
-	
 	private void registerSpringMVCDispatcherServletr(ServletContext container, WebApplicationContext ctx){
 		ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
 		servlet.setLoadOnStartup(1);
@@ -73,7 +67,9 @@ public class ResumeWebApplicationInitializer implements WebApplicationInitialize
 		return new ConfigurableSiteMeshFilter() {
 			@Override
 			protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
+				
 				builder.addDecoratorPath("/*", "/WEB-INF/template/page-template.jsp");
+				builder.addDecoratorPath("/fragment/*", "/WEB-INF/template/fragment-template.jsp");
 			}
 		};
 	}

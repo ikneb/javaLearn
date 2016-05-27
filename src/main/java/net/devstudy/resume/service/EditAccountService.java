@@ -17,7 +17,7 @@ import net.devstudy.resume.form.SignUpForm;
 
 public interface EditAccountService {
 
-	Account createNewProfile(SignUpForm signUpForm);
+	Account createNewAccount(SignUpForm signUpForm);
 	
 	
 

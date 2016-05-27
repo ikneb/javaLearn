@@ -2,16 +2,22 @@ package net.devstudy.resume.controller;
 
 
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.devstudy.resume.Constants;
 import net.devstudy.resume.entity.Account;
 import net.devstudy.resume.service.FindAccountService;
 
@@ -37,16 +43,27 @@ public class PublicDataController {
 		return "error";
 	}
 	
-	@RequestMapping(value="/welcome",method=RequestMethod.GET)
-	public String getWelcome(Model model){
-		Pageable pageable = new PageRequest(1,20);
-		Page<Account> accounts  = findAccountService.findAllByCompletedTrue(pageable);
-		model.addAttribute("accounts", accounts);
-		return "welcome";
-	}
+	@RequestMapping(value = { "/welcome" })
+	 public String listAll(Model model) {
+	 		Page<Account> accounts = findAccountService.findAll(new PageRequest(0, Constants.MAX_PROFILES_PER_PAGE, new Sort("id")));
+	 		model.addAttribute("accounts", accounts.getContent());
+	 		model.addAttribute("page", accounts);
+	 		return "welcome";
+	 	}
+	 	
+	 	@RequestMapping(value = "/fragment/more", method = RequestMethod.GET)
+	 	public String moreAccount(Model model,
+	 			@PageableDefault(size=Constants.MAX_PROFILES_PER_PAGE) @SortDefault(sort="id") Pageable pageable) throws UnsupportedEncodingException {
+	 		Page<Account> accounts = findAccountService.findAll(pageable);
+	 		model.addAttribute("accounts", accounts.getContent());
+	 		return "fragment/accounts-items";
+		}
 	
-	@RequestMapping(value="/search",method=RequestMethod.GET)
-	public String getSearch(){
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+	public String getSearch(Model model,Pageable pageable){
+		Page<Account> accounts = findAccountService.findBySearchQuery("query",new PageRequest(0, Constants.MAX_PROFILES_PER_PAGE, new Sort("id")));
+		model.addAttribute("accounts", accounts.getContent());
+		model.addAttribute("page", accounts);
 		return "search";
 	}
 	
