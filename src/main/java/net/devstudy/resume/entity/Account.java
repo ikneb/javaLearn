@@ -22,9 +22,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
-import org.springframework.data.elasticsearch.annotations.Document;
+/*import org.springframework.data.elasticsearch.annotations.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;*/
 
 import net.devstudy.resume.annotation.constraints.Adulthood;
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
@@ -33,7 +33,8 @@ import net.devstudy.resume.annotation.constraints.Phone;
 
 @Entity
 @Table(name = "account")
-@Document(indexName="account")
+/*@Document(indexName="account")
+*/
 public class Account extends AbstractEntity<Long> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -73,7 +74,7 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private String objective;
 
 	@Column(name = "large_photo", length = 255)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private String largePhoto;
 
 	@Column(name = "small_photo", length = 255)
@@ -82,14 +83,14 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	@Column(length = 20)
 	@Phone
 	@Size(max=17)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private String phone;
 
 	@Column(length = 100)
 	@EnglishLanguage
 	@Size(min=1)
 	@Email
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private String email;
 	
 	@Column
@@ -106,15 +107,15 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 	private String uid;
 	
 	@Column(nullable = false, length = 100)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private String password;
 	
 	@Column(nullable = false)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private boolean completed;
 	
 	@Column(insertable=false)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private Timestamp created;
 
 	@OneToMany(mappedBy = "account", cascade={CascadeType.MERGE, CascadeType.PERSIST})
@@ -122,12 +123,12 @@ public class Account extends AbstractEntity<Long> implements Serializable {
 
 	@OneToMany(mappedBy = "account", cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	@OrderBy("finishYear DESC, beginYear DESC, id DESC")
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private List<Education> educations;
 
 	@OneToMany(mappedBy = "account", cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	@OrderBy("name ASC")
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private List<Hobby> hobbies;
 
 	@OneToMany(mappedBy = "account",  cascade={CascadeType.MERGE, CascadeType.PERSIST})

@@ -19,8 +19,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 import org.joda.time.DateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/*import com.fasterxml.jackson.annotation.JsonIgnore;
+*/
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 import net.devstudy.resume.annotation.constraints.FirstFieldLessThanSecond;
 
@@ -73,7 +73,7 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_account", nullable = false)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private Account account;
 
 	public Practic() {

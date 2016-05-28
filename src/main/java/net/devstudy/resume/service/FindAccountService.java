@@ -13,7 +13,7 @@ public interface FindAccountService {
 	
 	Page<Account> findAll(Pageable pageable);
 	
-	Iterable<Account> findAllForIndexing();
+	/*Iterable<Account> findAllForIndexing();
 	 	
-	 	Page<Account> findBySearchQuery(String query, Pageable pageable);
+	 	Page<Account> findBySearchQuery(String query, Pageable pageable);*/
 }

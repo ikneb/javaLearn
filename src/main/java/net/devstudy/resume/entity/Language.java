@@ -15,8 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/*import com.fasterxml.jackson.annotation.JsonIgnore;
+*/
 import net.devstudy.resume.model.LanguageLevel;
 import net.devstudy.resume.model.LanguageType;
 
@@ -46,7 +46,7 @@ public class Language extends AbstractEntity<Long> implements Serializable, Acco
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_account", nullable=false)
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private Account account;
 
 	public Language() {

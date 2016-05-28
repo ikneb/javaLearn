@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ import net.devstudy.resume.form.LanguageForm;
 import net.devstudy.resume.form.PracticForm;
 import net.devstudy.resume.form.SkillForm;
 import net.devstudy.resume.form.UploadExampleForm;
+import net.devstudy.resume.model.CurrentAccount;
 import net.devstudy.resume.repository.storage.HobbyRepository;
 import net.devstudy.resume.service.EditAccountService;
 import net.devstudy.resume.util.SecurityUtil;
@@ -49,9 +51,9 @@ public class EditAccountController {
 		return "redirect:/chloe-albertson";
 	}
 
-	@RequestMapping(value = "/my-profile", method = RequestMethod.GET)
-	public String getMyProfile() {
-		return "my-profile";
+	@RequestMapping(value = "/my-profile")
+	public String getMyProfile(@AuthenticationPrincipal CurrentAccount currentAccount) {
+		return "redirect:/" + currentAccount.getUsername();
 	}
 	
 	/*Contacts*/
