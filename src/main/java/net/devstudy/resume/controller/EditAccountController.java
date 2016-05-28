@@ -35,10 +35,12 @@ public class EditAccountController {
 	
 	@Autowired
 	private HobbyRepository hobbyRepository;
+	
 
 	@RequestMapping(value = "/edit/edit", method = RequestMethod.GET)
 	public String getEditAccount(Model model) {
 		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
 		return "edit/edit";
 	}
 	@RequestMapping(value = "/edit/edit", method = RequestMethod.POST)
@@ -60,6 +62,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/contacts", method =  RequestMethod.GET)
 	public String getEditContacts(Model model) {
 		model.addAttribute("contactForm",new ContactForm(editAccountService.contacts(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/contacts";
 	}
 	@RequestMapping(value = "/edit/contacts", method = RequestMethod.POST)
@@ -92,6 +96,8 @@ public class EditAccountController {
 
 	private String gotoSkillsJSP(Model model) {
 		model.addAttribute("skillCategories", editAccountService.listSkillCategories());
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/skills";
 	}
 
@@ -99,6 +105,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/hobbies", method =  RequestMethod.GET)
 	public String getEditHobbies(Model model) {
 		model.addAttribute("hobbyForm",new HobbiesForm(editAccountService.listHobbies(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return gotoHobbyJSP(model);
 	}
 	@RequestMapping(value = "/edit/hobbies", method = RequestMethod.POST)
@@ -112,6 +120,8 @@ public class EditAccountController {
 	}
 	private String gotoHobbyJSP(Model model) {
 		model.addAttribute("hobbyName", hobbyRepository.findAll(new Sort("id")));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/hobbies";
 	}
 	
@@ -119,6 +129,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/practics", method = RequestMethod.GET)
 	public String getEditPractics(Model model) {
 		model.addAttribute("practicForm", new PracticForm(editAccountService.listPractics(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/practics";
 	}
 
@@ -136,6 +148,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/languages", method = RequestMethod.GET)
 	public String getEditLanguages(Model model) {
 		model.addAttribute("languageForm", new LanguageForm(editAccountService.listLanguages(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/languages";
 	}
 
@@ -153,6 +167,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/courses", method = RequestMethod.GET)
 	public String getEditCourses(Model model) {
 		model.addAttribute("courseForm", new CoursesForm(editAccountService.listCourses(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/courses";
 	}
 
@@ -170,6 +186,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/certificates", method =  RequestMethod.GET)
 	public String getEditCertificates(Model model) {
 		model.addAttribute("certificateForm",new CertificateForm(editAccountService.listCertificates(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/certificates";
 	}
 
@@ -182,6 +200,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/education", method =  RequestMethod.GET)
 	public String getEditEducation(Model model) {
 		model.addAttribute("educationForm",new EducationsForm( editAccountService.listEducation(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/education";
 	}
 	@RequestMapping(value = "/edit/education", method = RequestMethod.POST)
@@ -200,6 +220,8 @@ public class EditAccountController {
 	@RequestMapping(value = "/edit/info", method =  RequestMethod.GET)
 	public String getEditInfo(Model model) {
 		model.addAttribute("accountForm", new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "edit/info";
 	}
 	@RequestMapping(value = "/edit/info", method = RequestMethod.POST)
@@ -218,4 +240,6 @@ public class EditAccountController {
 		return "edit/password";
 	}
 
+	
+	
 }

@@ -1,46 +1,51 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
 <div class="container">
-	<div id="content" style="padding-left:200px;padding-right:200px" >
-	
-		<div class="tab-content brd" style="background-color:#4682B4;">
-		<div class="row center" ><h3>Укажите ваши персональные данные</h3></div>
+	<div id="content" style="padding-left: 200px; padding-right: 200px">
+		<div class="panel panel-info small-center-block">
+		<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-sign-in"></i> Укажите ваши персональные данные
+				</h3>
+			</div>
 		
-			<div class="panel panel-default">
+		
+			<div class="panel panel">
 			
 				<div class="panel-body">
 				
 				<h5>Имейте ввиду, что введенная вами имя и фамилия не смогут быть изменены в будущем! Поэтому предоставляйте реальные имя и фамилию!</h5>
 				
 				<hr>
-					<form:form action="/sing-up" method="post" commandName="signUpForm">
+					<form:form action="/sign-up" method="post" commandName="signUpForm">
 						<div class="form-group">
 							<label for="firstName" class="control-label col-xs-2">Имя</label>
 							<div class="col-xs-10">
-								<input type="text" class="form-control" id="firstName" placeholder="">
+								<input type="text" class="form-control" id="firstName" name="firstName" value="${signUpForm.firstName}" >
 							</div>
 						</div>
 						<br><br><br>
 						<div class="form-group">
 							<label for="lastName" class="control-label col-xs-2">Фамилия</label>
 							<div class="col-xs-10">
-								<input type="text" class="form-control" id="lastName" placeholder="">
+								<input type="text" class="form-control" id="lastName" name="lastName" value="${signUpForm.lastName}">
 							</div>
 						</div>
 						<br><br>
 						<div class="form-group">
 							<label for="password" class="control-label col-xs-2">Пароль</label>
 							<div class="col-xs-10">
-								<input type="password" class="form-control" id="password" placeholder="">
+								<input type="password" class="form-control" id="password" name="password" value="${signUpForm.password}">
 							</div>
 						</div>
 						<br><br>
 						<div class="form-group">
 							<label for="confirmPassword" class="control-label col-xs-2">Подтвержддение пароля</label>
 							<div class="col-xs-10">
-								<input type="password" class="form-control" id="confirmPassword" placeholder="">
+								<input type="password" class="form-control" name="confirmPassword" value="${signUpForm.confirmPassword}"  id="confirmPassword">
 							</div>
 						</div>
 						<br><br>

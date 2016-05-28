@@ -24,7 +24,7 @@ public class SignUpForm implements Serializable {
 	@EnglishLanguage(withNumbers=false, withSpechSymbols=false)
 	private String lastName;
 	
-	@PasswordStrength
+	/*@PasswordStrength*/
 	private String password;
 	
 	private String confirmPassword;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +41,9 @@ public class EditAccountServiceImpl implements EditAccountService {
 	@Autowired
 	private SkillCategoryRepository skillCategoryRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Value("${generate.uid.suffix.length}")
 	private int generateUidSuffixLength;
 
@@ -56,7 +60,7 @@ public class EditAccountServiceImpl implements EditAccountService {
 		account.setUid(generateAccountUid(signUpForm));
 		account.setFirstName(DataUtil.capitalizeName(signUpForm.getFirstName()));
 		account.setLastName(DataUtil.capitalizeName(signUpForm.getLastName()));
-		account.setPassword(signUpForm.getPassword());
+		account.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
 		account.setCompleted(false);
 		accountRepository.save(account);
 		/*registerCreateIndexAccountIfTrancationSuccess(account);*/
