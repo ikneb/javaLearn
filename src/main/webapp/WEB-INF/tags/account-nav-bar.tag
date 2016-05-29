@@ -15,9 +15,6 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<c:if test="${ isAuthentif == false}">
-			
-			<!-- <a href="/sign-in" class="nav navbar-nav navbar-right">  Войти</a>
-			<a href="/sign-up" class="nav navbar-nav navbar-right">Зарегистрироватся  </a> -->
 			<div class="navbar-form navbar-right">
 				<a href="/sign-in" class="btn btn-primary pull-right">Войти</a>
 				</div>

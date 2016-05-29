@@ -9,17 +9,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.devstudy.resume.entity.Account;
 import net.devstudy.resume.model.CurrentAccount;
+import net.devstudy.resume.repository.search.AccountSearchRepository;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.service.FindAccountService;
 
 @Service
 public class FindAccountServiceImpl implements FindAccountService,UserDetailsService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindAccountServiceImpl.class);
-	/*@Autowired
-	private AccountSearchRepository accountSearchRepository;*/
+	@Autowired
+	private AccountSearchRepository accountSearchRepository;
 	
 	@Autowired
 	AccountRepository accountRepository;
@@ -40,7 +42,7 @@ public class FindAccountServiceImpl implements FindAccountService,UserDetailsSer
 		return accountRepository.findAll(pageable);
 	}
 
-	/*@Override
+	@Override
 	@Transactional
 	public Iterable<Account> findAllForIndexing() {
 		Iterable<Account> all = accountRepository.findAll();
@@ -59,7 +61,7 @@ public class FindAccountServiceImpl implements FindAccountService,UserDetailsSer
 	public Page<Account> findBySearchQuery(String query, Pageable pageable) {
 		return accountSearchRepository.findByObjectiveLikeOrSummaryLikeOrPracticsCompanyLikeOrPracticsPositionLike(
 				 				query, query, query, query, pageable);
-	}*/
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

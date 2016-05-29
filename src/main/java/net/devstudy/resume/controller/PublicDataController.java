@@ -76,10 +76,10 @@ public class PublicDataController {
 		}
 	
 	@RequestMapping(value="/search",method=RequestMethod.POST)
-	public String getSearch(Model model,Pageable pageable){
-		/*Page<Account> accounts = findAccountService.findBySearchQuery("query",new PageRequest(0, Constants.MAX_PROFILES_PER_PAGE, new Sort("id")));
+	public String getSearch(@ModelAttribute("query")String query, Model model,Pageable pageable){
+		Page<Account> accounts = findAccountService.findBySearchQuery(query,new PageRequest(0, Constants.MAX_PROFILES_PER_PAGE, new Sort("id")));
 		model.addAttribute("accounts", accounts.getContent());
-		model.addAttribute("page", accounts);*/
+		model.addAttribute("page", accounts);
 		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
 		return "search";
 	}

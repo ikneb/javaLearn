@@ -1,6 +1,6 @@
 package net.devstudy.resume.service.impl;
  
- /*import javax.annotation.PostConstruct;
+ import javax.annotation.PostConstruct;
  
  import org.slf4j.Logger;
  import org.slf4j.LoggerFactory;
@@ -15,9 +15,9 @@ import net.devstudy.resume.service.FindAccountService;
 
  
 
- @Service*/
+ @Service
  public class ElasticSearchIndexingService {
- 	/*private static final Logger LOGGER = LoggerFactory.getLogger(ElasticSearchIndexingService.class);
+ 	private static final Logger LOGGER = LoggerFactory.getLogger(ElasticSearchIndexingService.class);
  	
  	@Value("${index.all.during.startup}")
  	private boolean indexAllDuringStartup;
@@ -47,5 +47,5 @@ import net.devstudy.resume.service.FindAccountService;
  		else{
  			LOGGER.info("indexAllDuringStartup is disabled");
  		}
- 	}*/
+ 	}
  }

@@ -17,8 +17,8 @@ public class RemoveAccountController {
 	
 	@RequestMapping(value = "/remove", method = RequestMethod.GET)
 	public String getRemove(@AuthenticationPrincipal CurrentAccount currentAccount) {
-		Account account = 
-		accountRepository.delete(account);
+		
+		/*accountRepository.delete(account);*/
 		return "remove";
 	}
 

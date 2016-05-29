@@ -23,6 +23,7 @@ public interface EditAccountService {
 
 	List<SkillCategory> listSkillCategories();
 	
+	void updateAccount(long idAccount,Account account);
 	void updateSkills(long idAccount, List<Skill> skills);
 	void updateHobbies(long idAccount, List<Hobby> hobbies);
 	void updateLanguages(long idAccount, List<Language> languages);
