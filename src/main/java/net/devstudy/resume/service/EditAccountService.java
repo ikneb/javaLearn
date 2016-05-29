@@ -24,6 +24,7 @@ public interface EditAccountService {
 	List<SkillCategory> listSkillCategories();
 	
 	void updateAccount(long idAccount,Account account);
+	void updateContact(long idAccount , Contact contact);
 	void updateSkills(long idAccount, List<Skill> skills);
 	void updateHobbies(long idAccount, List<Hobby> hobbies);
 	void updateLanguages(long idAccount, List<Language> languages);
@@ -31,6 +32,7 @@ public interface EditAccountService {
 	void updateCertificates(long idAccount, List<Certificate> certificates);
 	void updateEducation(long idAccount, List<Education> education);
 	void updatePractics(long idAccount, List<Practic> practics);
+	void updateInfo(long idAccount,Account account);
 	
 	List<Skill> listSkills(long idAccount);
 	List<Hobby> listHobbies(long idAccount);

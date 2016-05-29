@@ -174,10 +174,35 @@ public class EditAccountServiceImpl implements EditAccountService {
  		});
  	}
 	private void updateIndexAccount(long idAccount, Account account) {
-		
 		accountSearchRepository.save(account);
  		LOGGER.info("Account  index updated");
  	}
+	
+	@Override
+	@Transactional
+	public void updateContact(long idAccount, Contact contact){
+		Account account = accountRepository.findOne(idAccount);
+		account.setContacts(contact);
+		accountRepository.save(account);
+		registerUpdateIndexContactIfTransactionSuccess( idAccount,  contact);
+	}
+	private void registerUpdateIndexContactIfTransactionSuccess(final long idAccount, final Contact contact) {
+ 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+ 			@Override
+ 			public void afterCommit() {
+ 				LOGGER.info("Account contacts updated");
+ 				updateIndexAccountContacts(idAccount, contact);
+ 			}
+ 		});
+ 	}
+	private void updateIndexAccountContacts(long idAccount, Contact contact) {
+		Account account = accountSearchRepository.findOne(idAccount);
+		account.setContacts(contact);
+		accountSearchRepository.save(account);
+ 		LOGGER.info("Account contacts index updated");
+ 	}
+	
+	
 	
 	@Override
 	@Transactional
@@ -361,6 +386,34 @@ public class EditAccountServiceImpl implements EditAccountService {
  		account.setPractics(updatedData);
  		accountSearchRepository.save(account);
  		LOGGER.info("Account practics index updated");
+ 	}
+ 	
+ 	@Override
+	@Transactional
+ 	public void updateInfo(long idAccount,Account accountForm){
+ 		Account account = accountRepository.findOne(idAccount);
+ 		if(account.getInfo().equals(accountForm.getInfo())){
+ 			LOGGER.debug("Account info: nothing to update");
+			return;
+ 		}else{
+		account.setInfo(accountForm.getInfo());
+		accountRepository.save(account);
+		registerUpdateIndexAccountInfoIfTransactionSuccess(idAccount, account);
+ 		}
+ 		
+	}
+	private void registerUpdateIndexAccountInfoIfTransactionSuccess(final long idAccount, final Account account) {
+ 		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+ 			@Override
+ 			public void afterCommit() {
+ 				LOGGER.info("Account  updated");
+ 				updateIndexAccountInfo(idAccount, account);
+ 			}
+ 		});
+ 	}
+	private void updateIndexAccountInfo(long idAccount, Account account) {
+		accountSearchRepository.save(account);
+ 		LOGGER.info("Account  index updated");
  	}
 
 }

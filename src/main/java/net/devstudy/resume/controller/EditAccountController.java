@@ -76,7 +76,7 @@ public class EditAccountController {
 		if (bindingResult.hasErrors()) {
 			return "edit/contacts";
 		}
-		// TODO Update contacts
+		editAccountService.updateContact(SecurityUtil.getCurrentIdAccount(), form.getContact());
 		return "redirect:/edit/skills";
 	}
 
@@ -250,7 +250,7 @@ public class EditAccountController {
 		if (bindingResult.hasErrors()) {
 			return "edit/info";
 		}
-		// TODO Update info
+		editAccountService.updateInfo(SecurityUtil.getCurrentIdAccount(), form.getAccount());
 		return "redirect:/chloe-albertson";
 	}
 
