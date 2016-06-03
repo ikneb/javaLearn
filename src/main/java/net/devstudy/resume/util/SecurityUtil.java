@@ -47,4 +47,5 @@ public final class SecurityUtil {
 	public static String generateNewRestoreAccessToken(){
 		return UUID.randomUUID().toString().replace("-", "");
 	}
+	
 }

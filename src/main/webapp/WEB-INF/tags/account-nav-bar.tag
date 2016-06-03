@@ -11,7 +11,7 @@
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">My Resume</a>
+			<a class="navbar-brand" href="/welcome">My Resume</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<c:if test="${ isAuthentif == false}">
@@ -30,19 +30,19 @@
 						<li><a href="/${account.uid}${accountForm.account.uid}"><i class="fa fa-eye" aria-hidden="true"></i> My profile</a></li>
 						<li><a href="/edit/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit profile</a></li>
 						<li><a href="/#"><i class="fa fa-lock" aria-hidden="true"></i> Password</a></li>
-						<li><a href="/#"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
+						<li><a href="/remove"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="/sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i> Exit</a></li>
 					</ul></li>
 			</ul>
 			</c:if>
 			<div class="navbar-form navbar-right">
-				<form:form action="/search" method="post" commandName="query">
+				<form action="/search" method="post" >
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="Search" name="query">
 					</div>
 					<button type="submit" class="btn btn-default">Search</button>
-				</form:form>
+				</form>
 				
 			</div>
 		</div>

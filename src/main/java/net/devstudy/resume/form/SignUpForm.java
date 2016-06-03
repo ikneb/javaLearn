@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 
 import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 import net.devstudy.resume.annotation.constraints.FieldMatch;
-import net.devstudy.resume.annotation.constraints.PasswordStrength;
 
 
 @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match")

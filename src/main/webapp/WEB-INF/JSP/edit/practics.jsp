@@ -31,6 +31,9 @@
 						</c:forEach>
 
 						<hr>
+						<c:if test="${practicForm.items[0].position == null}">
+					<resume:edit-practic-empty-block/>
+					 </c:if>
 						<div style="text-align: center;">
 							<a href="#" class="navbar-link"> + Добавить еще</a>
 						</div>

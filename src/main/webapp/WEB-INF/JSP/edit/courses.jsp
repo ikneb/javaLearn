@@ -28,6 +28,9 @@
 					<c:forEach var="course" items="${courseForm.items}" varStatus="status">
 						<resume:edit-cource-block index="${status.index}" course="${course}" />
 					</c:forEach>
+					<c:if test="${courseForm.items[0].name == null}">
+					<resume:edit-cource-empty-block/>
+					 </c:if>
 					<div class="add">
 						<a href="#"> + Добавить еще</a>
 					</div>

@@ -2,7 +2,7 @@ package net.devstudy.resume.form;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class UploadExampleForm {
+public class UploadForm {
 
 	private String name;
 	private MultipartFile file;

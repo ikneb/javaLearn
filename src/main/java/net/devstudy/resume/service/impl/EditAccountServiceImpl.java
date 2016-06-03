@@ -161,6 +161,8 @@ public class EditAccountServiceImpl implements EditAccountService {
 		account.setPhone(accountForm.getPhone());
 		account.setObjective(accountForm.getObjective());
 		account.setSummary(accountForm.getSummary());
+		account.setLargePhoto(accountForm.getLargePhoto());
+		account.setSmallPhoto(accountForm.getSmallPhoto());
 		accountRepository.save(account);
 		registerUpdateIndexAccountIfTransactionSuccess(idAccount, account);
 	}
@@ -392,14 +394,11 @@ public class EditAccountServiceImpl implements EditAccountService {
 	@Transactional
  	public void updateInfo(long idAccount,Account accountForm){
  		Account account = accountRepository.findOne(idAccount);
- 		if(account.getInfo().equals(accountForm.getInfo())){
- 			LOGGER.debug("Account info: nothing to update");
-			return;
- 		}else{
+ 		
 		account.setInfo(accountForm.getInfo());
 		accountRepository.save(account);
 		registerUpdateIndexAccountInfoIfTransactionSuccess(idAccount, account);
- 		}
+ 		
  		
 	}
 	private void registerUpdateIndexAccountInfoIfTransactionSuccess(final long idAccount, final Account account) {

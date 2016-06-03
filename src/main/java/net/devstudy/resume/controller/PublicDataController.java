@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,13 +21,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.devstudy.resume.Constants;
 import net.devstudy.resume.entity.Account;
+import net.devstudy.resume.form.AccountForm;
 import net.devstudy.resume.form.SignUpForm;
 import net.devstudy.resume.model.CurrentAccount;
 import net.devstudy.resume.service.EditAccountService;
 import net.devstudy.resume.service.FindAccountService;
+import net.devstudy.resume.service.impl.NotificationManagerServiceImpl;
 import net.devstudy.resume.util.SecurityUtil;
 
 @Controller
@@ -37,6 +41,9 @@ public class PublicDataController {
 	
 	@Autowired
 	private EditAccountService editAccountService;
+	
+	@Autowired
+	NotificationManagerServiceImpl notificationManagerServiceImpl;
 	
 	
 	
@@ -58,10 +65,14 @@ public class PublicDataController {
 	}
 	
 	@RequestMapping(value = { "/welcome" })
-	 public String listAll(Model model) {
+	 public String listAll(Model model,@AuthenticationPrincipal CurrentAccount currentAccount) {
 	 		Page<Account> accounts = findAccountService.findAll(new PageRequest(0, Constants.MAX_PROFILES_PER_PAGE, new Sort("id")));
 	 		model.addAttribute("accounts", accounts.getContent());
-	 		model.addAttribute("page", accounts);
+	 			 		model.addAttribute("page", accounts);
+	 			 		if(SecurityUtil.getCurrentIdAccount()!=null){
+	 			 		model.addAttribute("accountForm",
+	 							new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
+	 			 		}
 	 		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
 	 		return "welcome";
 	 	}
@@ -76,11 +87,12 @@ public class PublicDataController {
 		}
 	
 	@RequestMapping(value="/search",method=RequestMethod.POST)
-	public String getSearch(@ModelAttribute("query")String query, Model model,Pageable pageable){
+	public String getSearch(@RequestParam("query")String query, Model model){
 		Page<Account> accounts = findAccountService.findBySearchQuery(query,new PageRequest(0, Constants.MAX_PROFILES_PER_PAGE, new Sort("id")));
 		model.addAttribute("accounts", accounts.getContent());
 		model.addAttribute("page", accounts);
 		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
+		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
 		return "search";
 	}
 	
@@ -131,9 +143,10 @@ public class PublicDataController {
 	}
 	
 	
-	@RequestMapping(value="/restore",method={RequestMethod.GET,RequestMethod.POST})
-	public String getRestore(){
-		return "restore";
+	@RequestMapping(value="/restore",method=RequestMethod.GET)
+	public String getRestore(Model model){
+		notificationManagerServiceImpl.sendRestoreAccessLink(editAccountService.account(SecurityUtil.getCurrentIdAccount()),"http://localhost:8080/");
+		return "redirect:/welcome";
 	}
 	
 	@RequestMapping(value="/restore/success",method=RequestMethod.GET)

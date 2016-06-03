@@ -14,7 +14,7 @@
 		<div class="col-lg-4 col-sm-4 ">
 			<div class="input-practic">
 				<label for="name-course">Название курса*</label> <input type="text" class="form-control" id="name-course" name="items[${index }].name"
-					value="${course.name}" />
+					value="${course.name} " />
 			</div>
 			<div class="row skill-delim">
 				<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
@@ -25,7 +25,7 @@
 		<div class="col-lg-4 col-sm-4">
 			<div class="input-practic">
 				<label for="school">Название учебного заведения*</label><input type="text" class="form-control" id="school" name="items[${index }].school"
-					value="${course.school}" />
+					value="${course.school} " />
 			</div>
 			<div class="row skill-delim">
 				<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">

@@ -24,6 +24,9 @@
 						<resume:edit-language-block index="${status.index}" language="${language }" />
 						<br>
 					</c:forEach>
+					<c:if test="${languageForm.items[0].type == null}">
+					<resume:edit-language-empty-block/>
+					 </c:if>
 					<div class="row">
 						<div class="col-xs-12">
 							<a href="javascript:void(0);">+ Добавить навык</a>

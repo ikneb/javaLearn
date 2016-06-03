@@ -1,5 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"%>
 <%@taglib prefix="resume" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 
 <div class="container">
@@ -11,13 +13,14 @@
 					<h3 class="panel-title">
 						<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Удаление аккаунта - безвозвратная операция!
 					</h3>
-
 				</div>
 				<div class="panel-body">
 					Удаление аккаунта <strong>НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО</strong>. Пожалуйста, подтвердите удаление: <strong></strong> <br>
 					<hr>
-					<div class="center">
-						<button type="button" class="btn btn-danger">Подтвердить удаление</button>
+					<div class="row">
+						<div class="navbar-form navbar-right">
+							<a href="/removeConfirmation" class="btn btn-primary pull-right">Подтвердить удаление</a>
+						</div>
 					</div>
 				</div>
 			</div>

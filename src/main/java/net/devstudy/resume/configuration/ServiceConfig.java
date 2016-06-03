@@ -14,7 +14,7 @@ import org.springframework.core.io.Resource;
 @ComponentScan({ "net.devstudy.resume.service.impl", 
 				 "net.devstudy.resume.controller",
 				 "net.devstudy.resume.filter", 
-				 "net.devstudy.resume.listener"})
+				 "net.devstudy.resume.component.impl"})
 public class ServiceConfig {
 	/**
 	 * http://docs.spring.io/autorepo/docs/spring/4.2.5.RELEASE/spring-framework-reference/html/beans.html
