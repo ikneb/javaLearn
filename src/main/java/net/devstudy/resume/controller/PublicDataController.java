@@ -92,7 +92,7 @@ public class PublicDataController {
 		model.addAttribute("accounts", accounts.getContent());
 		model.addAttribute("page", accounts);
 		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
-		model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
+	/*	model.addAttribute("accountForm",new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));*/
 		return "search";
 	}
 	

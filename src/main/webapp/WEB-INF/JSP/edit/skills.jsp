@@ -41,7 +41,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
-								<a href="javascript:void(0);">+ Добавить навык</a>
+								<a href="javascript:addEnumBlock.show();">+ Добавить навык</a>
 							</div>
 						</div>
 						<hr />

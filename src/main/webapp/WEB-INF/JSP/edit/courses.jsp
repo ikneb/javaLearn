@@ -8,7 +8,7 @@
 		<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 			<li><a href="/edit/edit" >Basis</a></li>
 			<li><a href="/edit/contacts" >Contacts</a></li>
-			<li><a href="#/edit/skills" >Technical skills</a></li>
+			<li><a href="/edit/skills" >Technical skills</a></li>
 			<li><a href="/edit/practics" >Practic</a></li>
 			<li><a href="/edit/certificates" >Certificates</a></li>
 			<li class="active"><a href="/edit/courses" >Сourses</a></li>

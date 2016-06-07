@@ -38,4 +38,14 @@ var resume = {
 };
 
 
+var addEnumBlock ={
+		
+		show : function(){
+			$('#ui-block-container').after('#addEnumBlock')
+			$('#addEnumBlock').css('display', 'block');
+			
+		}
+		
+};
+
 

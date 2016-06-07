@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.apache.commons.lang.WordUtils;
 
+import com.restfb.types.User;
+
 import net.devstudy.resume.form.SignUpForm;
 
 
@@ -19,6 +21,10 @@ public class DataUtil {
 
 	public static String generateAccountUid(SignUpForm profile) {
 		return normalizeName(profile.getFirstName()) + UID_DELIMETER + normalizeName(profile.getLastName());
+	}
+	
+	public static String generateAccountUidFaceBook(User user) {
+		return normalizeName(user.getFirstName()) + UID_DELIMETER + normalizeName(user.getLastName());
 	}
 
 	public static String regenerateUidWithRandomSuffix(String baseUid, String alphabet, int letterCount) {
