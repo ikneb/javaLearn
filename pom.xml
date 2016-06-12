@@ -155,7 +155,8 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
-
+		
+		
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -185,6 +186,8 @@
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.2</version>
 		</dependency>
+		
+		
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -233,6 +236,30 @@
  			<artifactId>restfb</artifactId>
  			<version>1.23.0</version>
  		</dependency>
+ 		
+ 		<dependency>
+			<groupId>com.moparisthebest</groupId>
+			<artifactId>junidecode</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>libphonenumber</artifactId>
+			<version>7.3.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.8</version>
+		</dependency>
 
 	</dependencies>
 </project>

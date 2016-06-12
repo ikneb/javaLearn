@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="resume" tagdir="/WEB-INF/tags"%>
 
 <div class="container">
@@ -25,15 +26,14 @@
 				<h3 class="center">Образование</h3>
 				<hr>
 				<form:form action="/edit/education" method="post" commandName="educationForm">
+				<sec:csrfInput />
+						<div id="ui-block-container">
 					<c:forEach var="education" items="${educationForm.items}" varStatus="status">
 						<resume:edit-education-block index="${status.index}" education="${education}" />
 					</c:forEach>
-					<hr>
-					<c:if test="${educationForm.items[0].summary == null}">
-						<resume:edit-education-empty-block />
-					</c:if>
+					</div>
 					<div class="add">
-						<a href="#"> + Добавить еще</a>
+						<a href="javascript:resume.ui.addBlock();"> + Добавить еще</a>
 					</div>
 					<hr>
 					<div class="row">
@@ -46,3 +46,6 @@
 		</div>
 	</div>
 </div>
+<script id="ui-block-template" type="text/x-handlebars-template">
+	<resume:edit-education-block index="{{blockIndex}}" />
+</script>

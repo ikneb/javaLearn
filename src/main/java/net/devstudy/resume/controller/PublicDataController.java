@@ -5,6 +5,7 @@ package net.devstudy.resume.controller;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,6 +45,8 @@ public class PublicDataController {
 	
 	@Autowired
 	NotificationManagerServiceImpl notificationManagerServiceImpl;
+	
+	
 	
 	
 	
@@ -125,9 +128,8 @@ public class PublicDataController {
 		return "/sign-up";
 	}
 	
-	
 	@RequestMapping(value="/sign-up",method=RequestMethod.POST)
-	public String SingUp(/*@Valid */@ModelAttribute("signUpForm") SignUpForm form, BindingResult bindingResult,
+	public String SingUp(@Valid @ModelAttribute("signUpForm") SignUpForm form, BindingResult bindingResult,
 			Model model){
 		if (bindingResult.hasErrors()) {
 			return "/sign-up";

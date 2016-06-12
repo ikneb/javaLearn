@@ -3,6 +3,7 @@ package net.devstudy.resume.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.devstudy.resume.entity.Account;
@@ -141,8 +143,8 @@ public class EditAccountController {
 	/* Hobbies */
 	@RequestMapping(value = "/edit/hobbies", method = RequestMethod.GET)
 	public String getEditHobbies(Model model) {
-		model.addAttribute("hobbyForm",
-				new HobbiesForm(editAccountService.listHobbies(SecurityUtil.getCurrentIdAccount())));
+		model.addAttribute("hobbies",
+				editAccountService.listHobbiesWithProfileSelected(SecurityUtil.getCurrentAccount()));
 		model.addAttribute("isAuthentif", SecurityUtil.isCurrentProfileAuthentificated());
 		model.addAttribute("accountForm",
 				new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
@@ -150,14 +152,11 @@ public class EditAccountController {
 	}
 
 	@RequestMapping(value = "/edit/hobbies", method = RequestMethod.POST)
-	public String saveEditHobbies(@Valid @ModelAttribute("hobbyForm") HobbiesForm form, BindingResult bindingResult,
-			Model model) {
-		if (bindingResult.hasErrors()) {
-			return gotoHobbyJSP(model);
-		}
-		editAccountService.updateHobbies(SecurityUtil.getCurrentIdAccount(), form.getItems());
+	public String saveEditHobbies(@RequestParam("hobbies") List<String> hobbies) {
+		editAccountService.updateHobbies(SecurityUtil.getCurrentAccount(), hobbies);
 		return "redirect:/edit/info";
 	}
+	
 
 	private String gotoHobbyJSP(Model model) {
 		model.addAttribute("hobbyName", hobbyRepository.findAll(new Sort("id")));

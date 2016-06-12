@@ -24,7 +24,7 @@ public class FirstFieldLessThanSecondConstaintValidator implements ConstraintVal
 	}
 	
 	@Override
-	public boolean isValid(Practic value, ConstraintValidatorContext context) {
+	public boolean isValid(Practic practic, ConstraintValidatorContext context) {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 		if(first == null||second==null){
 			return true;

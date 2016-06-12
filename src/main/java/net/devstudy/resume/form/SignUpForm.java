@@ -1,7 +1,5 @@
 package net.devstudy.resume.form;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -9,9 +7,9 @@ import net.devstudy.resume.annotation.constraints.EnglishLanguage;
 import net.devstudy.resume.annotation.constraints.FieldMatch;
 
 
-@FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match")
-public class SignUpForm implements Serializable {
-	private static final long serialVersionUID = 185151345117447819L;
+@FieldMatch(first = "password", second = "confirmPassword")
+public class SignUpForm  {
+	
 
 	@NotNull
 	@Size(max=50)
@@ -23,7 +21,7 @@ public class SignUpForm implements Serializable {
 	@EnglishLanguage(withNumbers=false, withSpechSymbols=false)
 	private String lastName;
 	
-	/*@PasswordStrength*/
+	
 	private String password;
 	
 	private String confirmPassword;

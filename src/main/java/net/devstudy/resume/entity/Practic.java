@@ -29,7 +29,7 @@ import net.devstudy.resume.annotation.constraints.FirstFieldLessThanSecond;
 
 @Entity
 @Table(name = "practic")
-@FirstFieldLessThanSecond(first="beginDate", second="finishDate")
+@FirstFieldLessThanSecond(first="beginDateYear", second="finishDateYear")
 public class Practic extends AbstractFinishDateEntity<Long> implements Serializable, AccountEntity {
 	private static final long serialVersionUID = 1L;
 
@@ -44,6 +44,7 @@ public class Practic extends AbstractFinishDateEntity<Long> implements Serializa
 	@Size(min=1)
 	private String company;
 
+	
 	@Column(length = 255)
 	@URL
 	private String demo;
