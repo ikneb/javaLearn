@@ -118,9 +118,11 @@ public class PublicDataController {
 		return "sign-in";
 	}
 	
-	@RequestMapping(value="/sign-up/success",method=RequestMethod.GET)
-	public String getSingUpSuccess(){
-		return "sign-up-success";
+	@RequestMapping(value="/sign-up-success")
+	public String getSingUpSuccess(Model model){
+		model.addAttribute("accountForm",
+				new AccountForm(editAccountService.account(SecurityUtil.getCurrentIdAccount())));
+		return "/sign-up-success";
 	}
 	
 	@RequestMapping(value="/sign-up",method=RequestMethod.GET)
@@ -136,7 +138,7 @@ public class PublicDataController {
 		}
 		Account account = editAccountService.createNewAccount(form);
 		 SecurityUtil.authentificate(account);
-		return "/edit/edit";
+		return "redirect:/sign-up-success";
 	}
 	
 	@RequestMapping(value="/sign-out")

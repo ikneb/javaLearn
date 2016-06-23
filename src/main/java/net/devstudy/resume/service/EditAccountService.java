@@ -12,6 +12,7 @@ import net.devstudy.resume.entity.Language;
 import net.devstudy.resume.entity.Practic;
 import net.devstudy.resume.entity.Skill;
 import net.devstudy.resume.entity.SkillCategory;
+import net.devstudy.resume.form.PasswordForm;
 import net.devstudy.resume.form.SignUpForm;
 import net.devstudy.resume.model.CurrentAccount;
 
@@ -47,5 +48,7 @@ public interface EditAccountService {
 	
 	Account account(long idAccount); 
 	Contact contacts(long idAccount);
+
+    Account  updatePassword(CurrentAccount currentAccount, PasswordForm form);
 
 }

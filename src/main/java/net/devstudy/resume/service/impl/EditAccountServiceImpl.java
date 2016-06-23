@@ -32,12 +32,14 @@ import net.devstudy.resume.entity.Practic;
 import net.devstudy.resume.entity.Skill;
 import net.devstudy.resume.entity.SkillCategory;
 import net.devstudy.resume.exception.CantCompleteClientRequestException;
+import net.devstudy.resume.form.PasswordForm;
 import net.devstudy.resume.form.SignUpForm;
 import net.devstudy.resume.model.CurrentAccount;
 import net.devstudy.resume.repository.search.AccountSearchRepository;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.repository.storage.SkillCategoryRepository;
 import net.devstudy.resume.service.EditAccountService;
+import net.devstudy.resume.service.NotificationManagerService;
 import net.devstudy.resume.service.StaticDataService;
 import net.devstudy.resume.util.DataUtil;
 
@@ -69,6 +71,9 @@ public class EditAccountServiceImpl implements EditAccountService {
 
 	@Autowired
 	private StaticDataService staticDataService;
+	
+	@Autowired
+	NotificationManagerService notificationManagerService;
 	
 	@Value("${profile.hobbies.max}")
 	private int maxProfileHobbies;
@@ -510,6 +515,25 @@ public class EditAccountServiceImpl implements EditAccountService {
 	private void updateIndexAccountInfo(long idAccount, Account account) {
 		accountSearchRepository.save(account);
 		LOGGER.info("Account  index updated");
+	}
+
+	@Override
+	@Transactional
+	public Account updatePassword(CurrentAccount currentAccount, PasswordForm form) {
+		Account account = accountRepository.findOne(currentAccount.getId());
+		account.setPassword(passwordEncoder.encode(form.getPassword()));
+		accountRepository.save(account);
+		sendPasswordChangedIfTransactionSuccess(account);
+		return account;
+	}
+	
+	protected void sendPasswordChangedIfTransactionSuccess(final Account account) {
+		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+			@Override
+			public void afterCommit() {
+				notificationManagerService.sendPasswordChanged(account);
+			}
+		});
 	}
 
 }

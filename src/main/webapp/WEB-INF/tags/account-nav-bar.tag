@@ -29,7 +29,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="/${account.uid}${accountForm.account.uid}"><i class="fa fa-eye" aria-hidden="true"></i> My profile</a></li>
 						<li><a href="/edit/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit profile</a></li>
-						<li><a href="/#"><i class="fa fa-lock" aria-hidden="true"></i> Password</a></li>
+						<li><a href="/edit/password"><i class="fa fa-lock" aria-hidden="true"></i> Password</a></li>
 						<li><a href="/remove"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="/sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i> Exit</a></li>

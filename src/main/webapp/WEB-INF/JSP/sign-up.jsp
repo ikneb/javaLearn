@@ -76,8 +76,8 @@
 						<br>
 						<div class="form-group">
 							<div class="form-group text-center">
-								<button type="submit" class="btn btn-primary">Войти</button>
-								<a href="/fbLogin" class="btn btn-warning">Войти через Facebook</a>
+								<button type="submit" class="btn btn-primary">зарегистрироваться</button>
+								<a href="/fbLogin" class="btn btn-warning">Зарегистрироваться через Facebook</a>
 							</div>
 							<div class="form-group"></div>
 						</div>

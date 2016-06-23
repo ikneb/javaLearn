@@ -17,11 +17,11 @@ import net.devstudy.resume.form.AccountForm;
 import net.devstudy.resume.form.UploadForm;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.service.EditAccountService;
-import net.devstudy.resume.service.FotoDownloadService;
+import net.devstudy.resume.service.PhotoDownloadService;
 import net.devstudy.resume.util.SecurityUtil;
 
 @Service
-public class FotoDownloadServiceImpl implements FotoDownloadService {
+public class PhotoDownloadServiceImpl implements PhotoDownloadService {
 	
 	@Value("download.foto.temporary")
 	private String temporary;

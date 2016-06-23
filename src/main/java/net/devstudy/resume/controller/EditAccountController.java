@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.devstudy.resume.entity.Account;
 import net.devstudy.resume.form.AccountForm;
 import net.devstudy.resume.form.CertificateForm;
 import net.devstudy.resume.form.ContactForm;
 import net.devstudy.resume.form.CoursesForm;
 import net.devstudy.resume.form.EducationsForm;
 import net.devstudy.resume.form.LanguageForm;
+import net.devstudy.resume.form.PasswordForm;
 import net.devstudy.resume.form.PracticForm;
 import net.devstudy.resume.form.SkillForm;
 import net.devstudy.resume.form.UploadForm;
@@ -28,7 +30,7 @@ import net.devstudy.resume.model.CurrentAccount;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.repository.storage.HobbyRepository;
 import net.devstudy.resume.service.EditAccountService;
-import net.devstudy.resume.service.FotoDownloadService;
+import net.devstudy.resume.service.PhotoDownloadService;
 import net.devstudy.resume.util.SecurityUtil;
 
 @Controller
@@ -44,7 +46,7 @@ public class EditAccountController {
 	AccountRepository accountRepository;
 	
 	@Autowired
-	FotoDownloadService fotoDownloadService;
+	PhotoDownloadService photoDownloadService;
 
 	@RequestMapping(value = "/edit/edit", method = RequestMethod.GET)
 	public String getEditAccount(Model model) {
@@ -60,7 +62,7 @@ public class EditAccountController {
 		if (bindingResult.hasErrors()) {
 			return "edit/edit";
 		}
-		fotoDownloadService.downloadFoto(accountForm);
+		photoDownloadService.downloadFoto(accountForm);
 		editAccountService.updateAccount(SecurityUtil.getCurrentIdAccount(), accountForm.getAccount());
 		return "redirect:/edit/contacts";
 	}
@@ -219,7 +221,7 @@ public class EditAccountController {
 
 	@RequestMapping(value = "/edit/certificates/upload", method = RequestMethod.POST)
 	public String getEditCertificatesUpload(@ModelAttribute("uploadForm") UploadForm uploadForm) {
-		fotoDownloadService.downloadCertificate(uploadForm);
+		photoDownloadService.downloadCertificate(uploadForm);
 		return "edit/courses";
 	}
 
@@ -265,9 +267,23 @@ public class EditAccountController {
 		return "redirect:/welcome";
 	}
 
-	@RequestMapping(value = "/edit/password", method = { RequestMethod.GET, RequestMethod.POST })
-	public String getEditPassword() {
+	@RequestMapping(value = "/edit/password", method = RequestMethod.GET )
+	public String getEditPassword(Model model) {
+		model.addAttribute("passwordForm", new PasswordForm());
 		return "edit/password";
+	}
+	
+	@RequestMapping(value = "/edit/password", method = RequestMethod.POST )
+	public String setPassword(@Valid @ModelAttribute("passwordForm") PasswordForm form, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()){
+			return "edit/password";
+		} else {
+			CurrentAccount currentAccount = SecurityUtil.getCurrentAccount();
+			Account account = editAccountService.updatePassword(currentAccount, form);
+			SecurityUtil.authentificate(account);
+			return "redirect:/" + currentAccount.getUid();
+		}
+		
 	}
 
 	
