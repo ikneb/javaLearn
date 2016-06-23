@@ -1,10 +1,6 @@
 package net.devstudy.resume.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -13,22 +9,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import net.coobird.thumbnailator.Thumbnails;
-import net.devstudy.resume.entity.Account;
-import net.devstudy.resume.entity.Certificate;
 import net.devstudy.resume.form.AccountForm;
 import net.devstudy.resume.form.CertificateForm;
 import net.devstudy.resume.form.ContactForm;
 import net.devstudy.resume.form.CoursesForm;
 import net.devstudy.resume.form.EducationsForm;
-import net.devstudy.resume.form.HobbiesForm;
 import net.devstudy.resume.form.LanguageForm;
 import net.devstudy.resume.form.PracticForm;
 import net.devstudy.resume.form.SkillForm;
@@ -37,14 +28,12 @@ import net.devstudy.resume.model.CurrentAccount;
 import net.devstudy.resume.repository.storage.AccountRepository;
 import net.devstudy.resume.repository.storage.HobbyRepository;
 import net.devstudy.resume.service.EditAccountService;
+import net.devstudy.resume.service.FotoDownloadService;
 import net.devstudy.resume.util.SecurityUtil;
 
 @Controller
 public class EditAccountController {
-	private static final String MEDIA_DIR = "E:/workspace/resume/src/main/webapp/media";
-	private static final String TEMPORARY = "E:/workspace/resume/external/test-data/photos";
 	
-
 	@Autowired
 	private EditAccountService editAccountService;
 
@@ -53,6 +42,9 @@ public class EditAccountController {
 	
 	@Autowired
 	AccountRepository accountRepository;
+	
+	@Autowired
+	FotoDownloadService fotoDownloadService;
 
 	@RequestMapping(value = "/edit/edit", method = RequestMethod.GET)
 	public String getEditAccount(Model model) {
@@ -68,22 +60,7 @@ public class EditAccountController {
 		if (bindingResult.hasErrors()) {
 			return "edit/edit";
 		}
-
-		try {
-			String uid = UUID.randomUUID().toString() + ".jpg";
-			File photo = new File(TEMPORARY + uid);
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(photo));
-			FileCopyUtils.copy(accountForm.getFile().getInputStream(), stream);
-			Thumbnails.of(photo).size(400, 400).toFile(new File(MEDIA_DIR + "/avatar/" + uid));
-			stream.close();
-			String smallUid = uid.replace(".jpg", "-sm.jpg");
-			Thumbnails.of(photo).size(110, 110).toFile(new File(MEDIA_DIR + "/avatar/" + smallUid));
-			accountForm.getAccount().setLargePhoto("/media/avatar/" + uid);
-			accountForm.getAccount().setSmallPhoto("/media/avatar/" + smallUid);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		fotoDownloadService.downloadFoto(accountForm);
 		editAccountService.updateAccount(SecurityUtil.getCurrentIdAccount(), accountForm.getAccount());
 		return "redirect:/edit/contacts";
 	}
@@ -242,25 +219,7 @@ public class EditAccountController {
 
 	@RequestMapping(value = "/edit/certificates/upload", method = RequestMethod.POST)
 	public String getEditCertificatesUpload(@ModelAttribute("uploadForm") UploadForm uploadForm) {
-		try {
-			String uid = UUID.randomUUID().toString() + ".jpg";
-			File photo = new File(TEMPORARY + uid);
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(photo));
-			FileCopyUtils.copy(uploadForm.getFile().getInputStream(), stream);
-			Thumbnails.of(photo).size(100, 100).toFile(new File(MEDIA_DIR + "/certificates/" + uid));
-			stream.close();
-			Account account = accountRepository.findOne(SecurityUtil.getCurrentIdAccount());
-			Certificate certificate = new Certificate();
-			certificate.setLargeUrl("/media/certificates/" + uid);
-			certificate.setSmallUrl("/media/certificates/" + uid);
-			certificate.setName(uploadForm.getName());
-			certificate.setAccount(account);
-			
-			
-			account.getCertificates().add(certificate);
-			editAccountService.updateCertificates(SecurityUtil.getCurrentIdAccount(),account.getCertificates());
-		} catch (Exception e) {
-		}
+		fotoDownloadService.downloadCertificate(uploadForm);
 		return "edit/courses";
 	}
 

@@ -3,8 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="resume" tagdir="/WEB-INF/tags"%>
 
-<div class="container">
-	<div id="content" style="padding-left: 200px; padding-right: 200px">
+<div class="container center">
+	<div id="content" style="padding-left: 200px; padding-right: 200px ">
 		<div class="panel panel-info small-center-block">
 			<div class="panel-heading">
 				<h3 class="panel-title">

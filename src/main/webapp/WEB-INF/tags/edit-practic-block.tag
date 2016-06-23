@@ -6,11 +6,12 @@
 <%@ attribute name="index" required="true" type="java.lang.Object"%>
 <%@ attribute name="practic" required="false" type="net.devstudy.resume.entity.Practic"%>
 
-<div class="frame" id="ui-item-${index}">
+<div class="frame ui-item" id="ui-item-${index}">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	<br> <br>
 	<div class="row">
 		<div class="col-lg-6 col-sm-6">
+		<input type="hidden" name="items[${index }].id" value="${practic.id }" /> 
 			<div class="input-practic">
 				<label for="usr">Должность</label> <input type="text" class="form-control" name="items[${index }].position" value="${practic.position}">
 			</div>

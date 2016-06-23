@@ -6,10 +6,9 @@
 <%@ attribute name="index" required="true" type="java.lang.Object"%>
 <%@ attribute name="course" required="false" type="net.devstudy.resume.entity.Course"%>
 
-<div class="frame">
+<div class="frame ui-item" id="ui-item-${index}">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<br> <br>
-
+	<br> <br> <input type="hidden" name="items[${index }].id" value="${course.id }" />
 	<div class="row">
 		<div class="col-lg-4 col-sm-4 ">
 			<div class="input-practic">
@@ -36,7 +35,7 @@
 		<div class="col-lg-2 col-sm-2">
 			<div class="input-practic">
 				<label for="finish-month">Окончания</label> <select class="form-control" id="finish-month" name="items[${index }].finishDateMonth">
-					<option ${practcourseic.finishDateMonth == 1 ? ' selected="selected"' : ''}value="1">Jan</option>
+					<option ${practcourseic.finishDateMonth == 1 ? ' selected="selected"' : ''} value="1">Jan</option>
 					<option ${course.finishDateMonth == 2 ? ' selected="selected"' : ''} value="2">Feb</option>
 					<option ${course.finishDateMonth == 3 ? ' selected="selected"' : ''} value="3">Mar</option>
 					<option ${course.finishDateMonth == 4 ? ' selected="selected"' : ''} value="4">Apr</option>

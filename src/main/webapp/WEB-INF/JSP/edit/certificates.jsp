@@ -3,19 +3,7 @@
 <%@ taglib prefix="resume" tagdir="/WEB-INF/tags"%>
 
 <div class="container">
-	<div id="content">
-		<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-			<li><a href="/edit/edit" >Basis</a></li>
-			<li><a href="/edit/contacts" >Contacts</a></li>
-			<li><a href="/edit/skills" >Technical skills</a></li>
-			<li><a href="/edit/practics" >Practic</a></li>
-			<li class="active"><a href="/edit/certificates" >Certificates</a></li>
-			<li><a href="/edit/courses" >Сourses</a></li>
-			<li><a href="/edit/education" >Education</a></li>
-			<li><a href="/edit/languages" >Languages</a></li>
-			<li><a href="/edit/hobbies" >Hobbies</a></li>
-			<li><a href="/edit/info" >Additional Info</a></li>
-		</ul>
+	<resume:edit-header selected="certificates"/>
 		<div class="tab-content brd">
 
 
@@ -28,6 +16,7 @@
 					<div style="text-align: center;">
 
 						<c:forEach var="certificat" items="${certificateForm.items}" varStatus="status">
+						<input type="hidden" name="items[${index }].id" value="${certificat.id }" /> 
 							<div class="frame-certificates">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 								<br>
@@ -40,16 +29,14 @@
 						<a data-target="#myModal" data-toggle="modal"> + Добавить еще</a>
 					</div>
 					<hr>
-					<div class="container text">
-						<button type="submit" class="btn btn-info">
-							<i class="fa fa-folder-open-o" aria-hidden="true"> </i>Save
-						</button>
-					</div>
-
+					<div class="row">
+							<div class="col-xs-12 text-center">
+								<input type="submit" class="btn btn-primary" value="Сохранить">
+							</div>
+						</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 
 

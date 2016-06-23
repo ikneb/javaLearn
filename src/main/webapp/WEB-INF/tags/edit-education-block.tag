@@ -6,9 +6,10 @@
 <%@ attribute name="index" required="true" type="java.lang.Object"%>
 <%@ attribute name="education" required="false" type="net.devstudy.resume.entity.Education"%>
 
-<div class="frame">
+<div class="frame ui-item" id="ui-item-${index}">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	<br> <br>
+	<input type="hidden" name="items[${index }].id" value="${education.id }" /> 
 	<div class="input-practic">
 		<label for="comment">Развернутая специализация</label>
 		<textarea class="form-control" rows="5" id="" name="items[${index }].summary">${education.summary}</textarea>

@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
 
 	<build>
-		<finalName>resume</finalName>
+		<finalName>ROOT</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -67,6 +67,74 @@
 						</configuration>
 						<goals>
 							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.4</version>
+				<executions>
+					<execution>
+						<id>common-minify</id>
+						<phase>package</phase>
+						<configuration>
+							<charset>UTF-8</charset>
+							<cssSourceDir>/static/css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>bootstrap-3.3.6.css</cssSourceFile>
+								<cssSourceFile>bootstrap-theme-3.3.6.css</cssSourceFile>
+								<cssSourceFile>font-awesome-4.5.0.css</cssSourceFile>
+								<cssSourceFile>timeline.css</cssSourceFile>
+								<cssSourceFile>app.css</cssSourceFile>
+							</cssSourceFiles>
+							<cssTargetDir>/static/css</cssTargetDir>
+							<cssFinalFile>resume-common.css</cssFinalFile>
+							<jsSourceDir>/static/js</jsSourceDir>
+							<jsSourceFiles>
+								<jsSourceFile>jquery-2.2.2.js</jsSourceFile>
+								<jsSourceFile>bootstrap-3.3.6.js</jsSourceFile>
+								<jsSourceFile>app.js</jsSourceFile>
+							</jsSourceFiles>
+							<jsFinalFile>resume-common.js</jsFinalFile>
+							<jsTargetDir>/static/js</jsTargetDir>
+							<verbose>true</verbose>
+							<jsEngine>CLOSURE</jsEngine>
+							<closureLanguage>ECMASCRIPT5</closureLanguage>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>full-minify</id>
+						<phase>package</phase>
+						<configuration>
+							<charset>UTF-8</charset>
+							<cssSourceDir>/static/css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>bootstrap-datepicker-1.6.0.css</cssSourceFile>
+								<cssSourceFile>bootstrap-slider-6.1.6.css</cssSourceFile>
+								<cssSourceFile>fileinput-4.3.2.css</cssSourceFile>
+							</cssSourceFiles>
+							<cssTargetDir>/static/css</cssTargetDir>
+							<cssFinalFile>resume-ex.css</cssFinalFile>
+							<jsSourceDir>/static/js</jsSourceDir>
+							<jsSourceFiles>
+								<jsSourceFile>bootstrap-datepicker-1.6.0.js</jsSourceFile>
+								<jsSourceFile>bootstrap-slider-6.1.6.js</jsSourceFile>
+								<jsSourceFile>handlebars-4.0.5.js</jsSourceFile>
+								<jsSourceFile>fileinput-4.3.2.js</jsSourceFile>
+							</jsSourceFiles>
+							<jsFinalFile>resume-ex.js</jsFinalFile>
+							<jsTargetDir>/static/js</jsTargetDir>
+							<verbose>true</verbose>
+							<jsEngine>CLOSURE</jsEngine>
+							<closureLanguage>ECMASCRIPT5</closureLanguage>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
 						</goals>
 					</execution>
 				</executions>

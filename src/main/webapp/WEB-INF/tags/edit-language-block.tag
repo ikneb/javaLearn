@@ -7,11 +7,12 @@
 <%@ attribute name="language" required="false" type="net.devstudy.resume.entity.Language"%>
 
 
-<div class="frame">
+<div class="frame ui-item" id="ui-item-${index}">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<br>
 					<div class="row">
 						<div class="col-lg-2 col-sm-2 ">
+						<input type="hidden" name="items[${index }].id" value="${language.id }" /> 
 							<div class="input-practic">
 								<label for="begin-month">Тип</label> <select class="form-control" name="items[${index }].type">
 									<option value="ALL">Не указан</option>

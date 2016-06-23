@@ -6,21 +6,8 @@
 
 <div class="container">
 	<div id="content">
-		<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-			<li><a href="/edit/edit">Basis</a></li>
-			<li><a href="/edit/contacts">Contacts</a></li>
-			<li><a href="/edit/skills">Technical skills</a></li>
-			<li><a href="/edit/practics">Practic</a></li>
-			<li><a href="/edit/certificates">Certificates</a></li>
-			<li><a href="/edit/courses">Сourses</a></li>
-			<li class="active"><a href="/edit/education">Education</a></li>
-			<li><a href="/edit/languages">Languages</a></li>
-			<li><a href="/edit/hobbies">Hobbies</a></li>
-			<li><a href="/edit/info">Additional Info</a></li>
-		</ul>
+		<resume:edit-header selected="education"/>
 		<div class="tab-content brd">
-
-
 
 			<div class="panel panel-default">
 				<h3 class="center">Образование</h3>
@@ -49,3 +36,5 @@
 <script id="ui-block-template" type="text/x-handlebars-template">
 	<resume:edit-education-block index="{{blockIndex}}" />
 </script>
+
+
