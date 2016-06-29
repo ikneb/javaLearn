@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name = "account_restore")
 public class AccountRestore extends AbstractEntity<Long> implements Serializable {
@@ -20,7 +21,8 @@ public class AccountRestore extends AbstractEntity<Long> implements Serializable
 	@Column(unique = true, nullable = false)
 	private Long id;
 	
-	@OneToOne(fetch=FetchType.LAZY, optional=false)
+	
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id", nullable=false)
 	private Account account;
 

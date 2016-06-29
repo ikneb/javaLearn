@@ -18,6 +18,8 @@ public interface AccountRepository extends PagingAndSortingRepository<Account, L
 	
 	Account findByPhone(String phone);
 	
+	Account findByUidOrEmailOrPhone(String uid, String email, String phone);
+	
 	int countByUid(String uid);
 	
 	Page<Account> findAllByCompletedTrue(Pageable pageable);

@@ -10,7 +10,7 @@
 			<div class="media-body search-result-item">
 				<a href="/${account.uid }" class="btn btn-primary pull-right">Детали</a>
 				<h4 class="media-heading">
-					<a href="/${account.uid }">${account.id}) ${account.fullName }, ${account.age }</a>
+					<a href="/${account.uid }"> ${account.fullName }, ${account.age }</a>
 				</h4>
 				<strong>${account.objective }</strong>
 				<p>${account.city },${account.country }</p>

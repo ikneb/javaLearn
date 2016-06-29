@@ -146,21 +146,27 @@ public class PublicDataController {
 	 return  "redirect:/welcome";
 	}
 	
-	
-	@RequestMapping(value="/restore",method=RequestMethod.GET)
-	public String getRestore(Model model){
-		notificationManagerServiceImpl.sendRestoreAccessLink(editAccountService.account(SecurityUtil.getCurrentIdAccount()),"http://localhost:8080/");
-		return "redirect:/welcome";
+	@RequestMapping(value = "/restore", method=RequestMethod.GET)
+	public String getRestoreAccess() {
+		return "restore";
 	}
 	
-	@RequestMapping(value="/restore/success",method=RequestMethod.GET)
-	public String getRestoreSuccess(){
+	@RequestMapping(value = "/restore/success", method=RequestMethod.GET)
+	public String getRestoreSuccess() {
 		return "restore-success";
 	}
 	
-	@RequestMapping(value="/restore/{token}",method=RequestMethod.GET)
-	public String getToken(){
-		return "restore";
+	@RequestMapping(value = "/restore", method=RequestMethod.POST)
+	public String processRestoreAccess(@RequestParam("uid") String anyUnigueId) {
+		findAccountService.restoreAccess(anyUnigueId);
+		return "redirect:/restore/success";
+	}
+	
+	@RequestMapping(value = "/restore/{token}", method=RequestMethod.GET)
+	public String restoreAccess(@PathVariable("token") String token) {
+		Account profile = findAccountService.findByRestoreToken(token);
+		SecurityUtil.authentificate(profile);
+		return "redirect:/edit/password";
 	}
 
 }

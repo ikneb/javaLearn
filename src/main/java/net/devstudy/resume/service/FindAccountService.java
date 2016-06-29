@@ -16,4 +16,8 @@ public interface FindAccountService {
 	Iterable<Account> findAllForIndexing();
 	 	
 	 	Page<Account> findBySearchQuery(String query, Pageable pageable);
+	 	
+	 	void restoreAccess( String anyUnigueId);
+	 	
+	 	Account findByRestoreToken( String token);
 }

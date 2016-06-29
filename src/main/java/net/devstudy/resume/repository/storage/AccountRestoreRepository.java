@@ -8,4 +8,7 @@ import net.devstudy.resume.entity.AccountRestore;
 public interface AccountRestoreRepository extends CrudRepository<AccountRestore, Long> {
 	
 	AccountRestore findByToken(String token);
+	
+	AccountRestore findByAccountId(Long long1);
+	
 }

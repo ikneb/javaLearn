@@ -4,7 +4,11 @@
 
 
 <div class="container">
-	<div id="content" style="padding-left: 200px; padding-right: 200px">
+<div class="row">
+		<div class="col-lg-3  col-sm-0">
+		</div>
+		<div class="col-lg-8  col-sm-3">
+	
 		<div class="panel panel-info small-center-block">
 			<div class="panel-heading">
 				<h3 class="panel-title">
@@ -24,7 +28,7 @@
 						<div class="form-group">
 							<label for="firstName" class="control-label col-xs-2">Имя</label>
 							<div class="col-xs-10">
-								<input type="text" class="form-control" id="firstName" name="firstName" value="${signUpForm.firstName}">
+								<input type="text" class="form-control" id="firstName" name="firstName" value="${signUpForm.firstName}" required>
 							</div>
 							<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 								<form:errors path="firstName" cssClass="alert alert-danger" element="div" />
@@ -36,7 +40,7 @@
 						<div class="form-group">
 							<label for="lastName" class="control-label col-xs-2">Фамилия</label>
 							<div class="col-xs-10">
-								<input type="text" class="form-control" id="lastName" name="lastName" value="${signUpForm.lastName}">
+								<input type="text" class="form-control" id="lastName" name="lastName" value="${signUpForm.lastName}" required>
 							</div>
 							<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 								<form:errors path="lastName" cssClass="alert alert-danger" element="div" />
@@ -47,7 +51,7 @@
 						<div class="form-group">
 							<label for="password" class="control-label col-xs-2">Пароль</label>
 							<div class="col-xs-10">
-								<input type="password" class="form-control" id="password" name="password" value="${signUpForm.password}">
+								<input type="password" class="form-control" id="password" name="password" value="${signUpForm.password}" required>
 							</div>
 							<%-- <div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 								<form:errors path="password" cssClass="alert alert-danger" element="div" />
@@ -56,9 +60,9 @@
 						<br>
 						<br>
 						<div class="form-group">
-							<label for="confirmPassword" class="control-label col-xs-2">Подтвержддение пароля</label>
+							<label for="confirmPassword" class="control-label col-xs-2">Подтверждение</label>
 							<div class="col-xs-10">
-								<input type="password" class="form-control" name="confirmPassword" value="${signUpForm.confirmPassword}" id="confirmPassword">
+								<input type="password" class="form-control" name="confirmPassword" value="${signUpForm.confirmPassword}" id="confirmPassword" required>
 							</div>
 							<div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-2 col-xs-7 col-sm-8 col-md-10" style="padding-left: 0px;">
 								<form:errors path="confirmPassword" cssClass="alert alert-danger" element="div" />
@@ -74,10 +78,13 @@
 							</div>
 						</div>
 						<br>
+						
 						<div class="form-group">
 							<div class="form-group text-center">
-								<button type="submit" class="btn btn-primary">зарегистрироваться</button>
-								<a href="/fbLogin" class="btn btn-warning">Зарегистрироваться через Facebook</a>
+								<button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+								<br>
+								<br>
+								<a href="/fbLogin" class="btn btn-warning"><i class="fa fa-facebook" aria-hidden="true"></i> Зарегистрироваться через Facebook</a>
 							</div>
 							<div class="form-group"></div>
 						</div>
@@ -87,4 +94,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

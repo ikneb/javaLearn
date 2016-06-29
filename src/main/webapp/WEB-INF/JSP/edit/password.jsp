@@ -4,7 +4,8 @@
 <%@ taglib prefix="resume" 	tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags" %> 
 
-<div class="panel panel-info small-center-block">
+<div class="container" style="padding-left: 280px; padding-right: 280px" >
+<div class="panel panel-info small-center-block ">
 	<div class="panel-heading">
 		<h3 class="panel-title">
 			<i class="fa fa-unlock-alt"></i> Новый пароль для аккаунта
@@ -30,4 +31,5 @@
 			<button type="submit" class="btn btn-primary">Обновить пароль</button>
 		</form:form>
 	</div>
+</div>
 </div>

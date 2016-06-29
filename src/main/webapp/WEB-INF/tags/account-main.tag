@@ -27,10 +27,10 @@
         		<a class="list-group-item" href="javascript:void(0);"><i class="fa fa-skype" aria-hidden="true"></i> ${account.getContacts().skype}</a>
         </c:if>
         <c:if test="${account.getContacts().vkontakte != null}">
-        		<a target="_blank" class="list-group-item" href="${account.getContacts().vkontakte}"><i class="fa fa-facebook" aria-hidden="true"></i> ${account.getContacts().vkontakte}</a>
+        		<a target="_blank" class="list-group-item" href="${account.getContacts().vkontakte}"> <i class="fa fa-vk" aria-hidden="true"></i> ${account.getContacts().vkontakte}</a>
                 </c:if>
         <c:if test="${account.getContacts().facebook != null}">
-        		<a target="_blank" class="list-group-item" href="${account.getContacts().facebook}"><i class="fa fa-vk" aria-hidden="true"></i> ${account.getContacts().facebook}</a>
+        		<a target="_blank" class="list-group-item" href="${account.getContacts().facebook}"><i class="fa fa-facebook" aria-hidden="true"></i> ${account.getContacts().facebook}</a>
                 </c:if>
         <c:if test="${account.getContacts().linkedin != null}">
         		<a target="_blank" class="list-group-item" href="${account.getContacts().linkedin}"><i class="fa fa-linkedin" aria-hidden="true"></i> ${account.getContacts().linkedin}</a>
